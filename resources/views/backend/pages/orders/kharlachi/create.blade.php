@@ -24,7 +24,7 @@
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"
                                     class="text-muted">Dashboard</a></li>
-                            <li class="breadcrumb-item text-muted active" aria-current="page">Create Orer</li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Create Order</li>
                         </ol>
                     </nav>
                 </div>
@@ -142,8 +142,6 @@
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                        <form action=""></form>
-
                         <ul class="nav nav-pills bg-nav-pills nav-justified mb-3" style="width: 40%;">
                             <li class="nav-item">
                                 <a href="#self" data-bs-toggle="tab" aria-expanded="true"
@@ -202,7 +200,7 @@
                                         <div class="col-sm-6">
                                             <div class="col-sm-12 mb-2">
                                                 <label for="staff_id">نام افعانی:</label>
-                                                <select class="form-control  nice-select  form-select" name="name_2"
+                                                <select class="form-control  nice-select  form-select" name="name2"
                                                     id="name_af_id">
                                                     <option value="">Select</option>
                                                     @foreach ($admins as $admin)
@@ -247,7 +245,15 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            
+                                            <div class="col-sm-12 mb-2">
+                                                <label for="self_order_id">مسلسل نمبر:</label>
+                                                <select class="form-control  nice-select  form-select" name="sde_musalsal_num" id="product_owner_id">
+                                                <option value="">Select</option>
+                                                    @foreach ($kharlachi as $admin)
+                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
                                             <div class="col-sm-12 mb-2">
                                                 <label for="custom">کسټم:</label>
@@ -257,9 +263,6 @@
                                                     id="self_pk_custom" autocomplete="off" name="sde_ecchange_rate"
                                                     type="text">
                                             </div>
-
-                                           
-                                          
                                             
                                            
                                         </div>
@@ -286,152 +289,6 @@
                                 </form>
                             </div>
                         </div>
-
-                        {{-- <div class="tab-content">
-                            <div class="tab-pane" id="other">
-                                <form class="table-responsive" action="{{ route('admin.order.other_expense') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-sm-6 mb-2">
-                                            <label for="order_id">مسلسل نمبر:</label>
-                                            <select class="form-control  nice-select  form-select" name="o_musalsal_num" id="product_owner_id">
-                                                <option value="">Select</option>
-                                                    @foreach ($kharlachi as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
-                                                    @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                        </div>
-                                        <div class="col-sm-6" id="other_pk_form">
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام پاکستانی:</label>
-                                                <select class="form-control  nice-select  form-select"
-                                                    name="o_dealer_pk" id="delear_name_pk_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="punjab_rent">کریه پنجاب:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_punjab_rent" autocomplete="off" name="o_kiraya_punjab"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="custom">کسټم :</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_custom" autocomplete="off" name="o_custom_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="labour">مزدوری:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_labour" autocomplete="off" name="o_labour_pk"
-                                                    type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="NLC">انلسی:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_nlc" autocomplete="off" name="o_nlc_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Kanta">کانټاه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_kanta" autocomplete="off" name="o_kanta_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Comission">کمشن:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_comission" autocomplete="off" name="o_commission_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Total">جمله کلدار:</label>
-                                                <input class="form-control" id="other_pk_total" autocomplete="off"
-                                                    name="o_total_pk" type="text">
-                                            </div>
-                                        </div>
-                                        <!-- 1st six col end here -->
-                                        <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام افغانستانی:</label>
-
-                                                <select class="form-control  nice-select  form-select"
-                                                    name="o_dealer_af" id="delear_name_af_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="other_af_rent">کریه پنجاب:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_rent" autocomplete="off" name="o_gumrak_af"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="fixed_rent">مطابق کریه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_fixed_rent" autocomplete="off"
-                                                    name="o_mutabik_kiraya_af" type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="extra_rent">اضافی کریه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_extra_rent"  name="o_extra_kiraya_af"
-                                                    type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="ponch">پونچ:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_ponch" autocomplete="off" name="o_ponch_af"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="total">جمله افغانستانی:</label>
-                                                <input class="form-control" id="other_af_total" autocomplete="off"
-                                                    name="o_total_af" type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="balty_af">عکس</label>
-                                                <input type="file" name="o_balty_af" id="balty_af" multiple="">
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-rounded btn-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>

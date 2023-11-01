@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('kharcha');
             $table->string('vehicle_num');
             $table->string('details');
-            $table->string('kanta_pk');
             $table->timestamps();
         });
     }

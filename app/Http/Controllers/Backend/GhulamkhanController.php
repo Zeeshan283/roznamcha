@@ -110,51 +110,24 @@ class GhulamkhanController extends Controller
     public function selfdata(Request $request)
     {
         // dd($request->all());
-        if($request['dealer_pk'] != '' ){
+        if($request['sde_munafa'] == '' ){
             $record = new SelfDeliveryGhulamkhan();
             $record->musalsal_num = $request['musalsal_num'];
-            $record->dealer_pk = $request['dealer_pk'];
-            $record->dealer_af = $request['dealer_af'];
-            $record->kiraya_punjab = $request['kiraya_punjab'];
-            $record->custom_pk = $request['custom_pk'];
-            $record->labour_pk = $request['labour_pk'];
-            $record->nlc_pk = $request['nlc_pk'];
-            $record->kanta_pk = $request['kanta_pk'];
-            $record->commission_pk = $request['commission_pk'];
-            $record->total_pk = $request['total_pk'];
-            $record->gumrak_af = $request['gumrak_af'];
-            $record->kiraya_af = $request['kiraya_af'];
-            $record->alamkhabar_af = $request['alamkhabar_af'];
-            $record->kharcha_af = $request['kharcha_af'];
-            $record->labour_af = $request['labour_af'];
-            $record->total_af = $request['total_af'];
+            $record->name1 = $request['name1'];
+            $record->name2 = $request['name2'];
+            $record->date = $request['date'];
+            $record->kharcha = $request['kharcha'];
+            $record->vehicle_num = $request['vehicle_num'];
+            $record->details = $request['details'];
             $record->save();
         }
         else {
             $self_record = new SelfDeliveryExpenseGhulamkhan();
-            $self_record->musalsal_num = $request['musalsal_num'];
-            $self_record->country = $request['sde_country'];
-            $self_record->detail_kiraya = $request['sde_detail_kiraya'];
-            $self_record->kiraya_pk = $request['sde_kiraya_pk'];
-            $self_record->labour_pk = $request['sde_labour_pk'];
-            $self_record->nlc_pk = $request['sde_nlc_pk'];
-            $self_record->kanta_pk = $request['sde_kanta_pk'];
-            $self_record->commission_pk = $request['sde_commission_pk'];
-            $self_record->total_pk = $request['sde_total_pk'];
-            $self_record->kiraya_af = $request['sde_kiraya_af'];
-            $self_record->alamkhabar_af = $request['sde_alamkhabar_af'];
-            $self_record->kharcha_af= $request['sde_kharcha_af'];
+            $self_record->malwala = $request['malwala'];
+            $self_record->musalsal_num = $request['sde_musalsal_num'];
+            $self_record->ecchange_rate = $request['sde_ecchange_rate'];
             $self_record->total_af = $request['sde_total_af'];
-            $self_record->bilty	 = $request['kharcha_af'];
-
-            if ($request->hasFile('sde_bilty')) {
-                $image = $request->file('sde_bilty');
-                $imageName = uniqid() . '.' . $image->extension();
-                $image->move('upload/ghulamkhan/selfotherexpense', $imageName);
-            
-                // Set the 'bilty' column to the file path
-                $self_record->bilty = 'upload/ghulamkhan/selfotherexpense/' . $imageName;
-            }
+            $self_record->munafa = $request['sde_munafa'];
      
             $self_record->save();    
         }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id'); 
             $table->integer('malwala')->unsigned();
             $table->foreign('malwala')->references('id')->on('admins'); 
+            $table->integer('musalsal_num')->unsigned();
+            $table->foreign('musalsal_num')->references('id')->on('kharlachi_orders'); 
             $table->string('ecchange_rate');
             $table->string('total_af');
             $table->string('munafa');

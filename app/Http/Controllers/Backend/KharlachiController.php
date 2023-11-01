@@ -109,8 +109,8 @@ class KharlachiController extends Controller
 
     public function selfdata(Request $request)
     {
-        // dd($request->all());
-        if($request['dealer_pk'] != '' ){
+        // dd($request->all()); 
+        if($request['sde_munafa'] == '' ){
             $record = new SelfDeliveryKharlachi();
             $record->musalsal_num = $request['musalsal_num'];
             $record->name1 = $request['name1'];
@@ -124,7 +124,8 @@ class KharlachiController extends Controller
         else {
             $self_record = new SelfDeliveryExpenseKharlachis();
             $self_record->malwala = $request['malwala'];
-            $self_record->ecchange_rate = $request['sde_echange_rate'];
+            $self_record->musalsal_num = $request['sde_musalsal_num'];
+            $self_record->ecchange_rate = $request['sde_ecchange_rate'];
             $self_record->total_af = $request['sde_total_af'];
             $self_record->munafa = $request['sde_munafa'];
      

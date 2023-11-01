@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('self_delivery_expense_wanas', function (Blueprint $table) {
-            $table->increments('id'); 
+        Schema::create('self_delivery_expense_thorkhams', function (Blueprint $table) {
+            $table->id();
             $table->integer('malwala')->unsigned();
             $table->foreign('malwala')->references('id')->on('admins'); 
             $table->integer('musalsal_num')->unsigned();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('self_delivery_expense_wana');
+        Schema::dropIfExists('self_delivery_expense_thorkhams');
     }
 };

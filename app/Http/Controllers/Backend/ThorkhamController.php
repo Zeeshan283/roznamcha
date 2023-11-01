@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\SelfDeliveryExpenseThorkhams;
 use App\Models\SelfDeliveryThorkhams;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,31 +94,29 @@ class ThorkhamController extends Controller
     {
         // dd($request->all());
 
-        $record = new SelfDeliveryThorkhams();
-        $record->musalsal_num = $request['t_musalsal_num'];
-        $record->thorkham_staff_id = $request['t_thorkham_staff_id'];
-        $record->custom = $request['t_custom'];
-        $record->kustom_expense = $request['t_kustom_expense'];
-        $record->custom_total = $request['t_custom_total'];
-        $record->country = $request['t_country'];
-        $record->detail_kiraya = $request['t_detail_kiraya'];
-        $record->kiraya = $request['t_kiraya'];
-        $record->labour = $request['t_labour'];
-        $record->gumrak = $request['t_gumrak'];
-        $record->expense = $request['t_expense'];
-        $record->total_expense = $request['t_total_expense'];
-
-        if ($request->hasFile('t_bilty')) {
-            $image = $request->file('t_bilty');
-            $imageName = uniqid() . '.' . $image->extension();
-            $image->move('upload/thorkham/selfdeliverythorkhams', $imageName);
-        
-            // Set the 'bilty' column to the file path
-            $record->bilty = 'upload/thorkham/selfdeliverythorkhams/' . $imageName;
+        if($request['sde_munafa'] == '' ){
+            $record = new SelfDeliveryThorkhams();
+            $record->musalsal_num = $request['musalsal_num'];
+            $record->name1 = $request['name1'];
+            $record->name2 = $request['name2'];
+            $record->date = $request['date'];
+            $record->kharcha = $request['kharcha'];
+            $record->vehicle_num = $request['vehicle_num'];
+            $record->details = $request['details'];
+            $record->save();
         }
-
-        $record->save();
-
+        else {
+            $self_record = new SelfDeliveryExpenseThorkhams();
+            $self_record->malwala = $request['malwala'];
+            $self_record->musalsal_num = $request['sde_musalsal_num'];
+            $self_record->ecchange_rate = $request['sde_ecchange_rate'];
+            $self_record->total_af = $request['sde_total_af'];
+            $self_record->munafa = $request['sde_munafa'];
+     
+            $self_record->save();    
+        }
+    
+        
         session()->flash('success', 'Record created successfully');
         return redirect()->back();
     }

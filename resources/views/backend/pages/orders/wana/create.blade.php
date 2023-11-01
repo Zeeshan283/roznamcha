@@ -138,302 +138,167 @@
             <!-- data table end -->
 
             <!-- data table start -->
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        @include('backend.layouts.partials.messages')
+            
 
-                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3" style="width: 40%;">
-                            <li class="nav-item">
-                                <a href="#self" data-bs-toggle="tab" aria-expanded="true"
-                                    class="nav-link rounded-0 active">
-                                    <i class="mdi mdi-home-variant d-lg-none d-block me-1"></i>
-                                    <span class="d-none d-lg-block">Self</span>
-                                </a>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a href="#other" data-bs-toggle="tab" aria-expanded="flase" class="nav-link rounded-0">
-                                    <i class="mdi mdi-account-circle d-lg-none d-block me-1"></i>
-                                    <span class="d-none d-lg-block">Other</span>
-                                </a>
-                            </li> --}}
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane show active" id="self">
-                                <form class="table-responsive" action="{{ route('admin.order.selfdata') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-sm-6 mb-2">
-                                            <label for="self_order_id">مسلسل نمبر:</label>
-                                            <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                            <option value="">Select</option>
-                                                @foreach ($wana as $admin)
-                                                    <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="hidden" name="type" value="self" id="type">
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام پاکستان</label>
-                                                <select class="form-control  nice-select  form-select" name="dealer_pk"
-                                                    id="name_pk_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="date">تاریخ:</label>
-                                                <input class="form-control" name="date" type="date" id="date">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="punjab_rent"> خرچہ:</label>
-                                                <input class="form-control pak_calculation" id="punjab_rent"
-                                                    autocomplete="off" name="kharcha" type="text">
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام افعانی:</label>
-                                                <select class="form-control  nice-select  form-select" name="dealer_af"
-                                                    id="name_af_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Gumrak">گاڑی نمبر :</label>
-                                                <input class="form-control af_calculation"
-                                                    id="gumrak_aff" autocomplete="off" name="vehicle_num" type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Gumrak">تفصیل:</label>
-                                                <input
-                                                    class="form-control
-                                            af_calculation"
-                                                    id="gumrak_aff" autocomplete="off" name="details" type="text">
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <!-- button should be here -->
-                                        <div class="col-sm-4 mt-4">
-                                            <a aria-controls="collapseExample" aria-expanded="false"
-                                                class="btn btn-success" data-bs-toggle="collapse" href="#af_form"
-                                                role="button">
-                                                +
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('backend.layouts.partials.messages')
+                                    <ul class="nav nav-pills bg-nav-pills nav-justified mb-3" style="width: 40%;">
+                                        <li class="nav-item">
+                                            <a href="#self" data-bs-toggle="tab" aria-expanded="true"
+                                                class="nav-link rounded-0 active">
+                                                <i class="mdi mdi-home-variant d-lg-none d-block me-1"></i>
+                                                <span class="d-none d-lg-block">Self</span>
                                             </a>
+                                        </li>
+                                        {{-- <li class="nav-item">
+                                            <a href="#other" data-bs-toggle="tab" aria-expanded="flase" class="nav-link rounded-0">
+                                                <i class="mdi mdi-account-circle d-lg-none d-block me-1"></i>
+                                                <span class="d-none d-lg-block">Other</span>
+                                            </a>
+                                        </li> --}}
+                                    </ul>
+            
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="self">
+                                            <form class="table-responsive" action="{{ route('admin.order.wselfdata') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-sm-6 mb-2">
+                                                        <label for="self_order_id">مسلسل نمبر:</label>
+                                                        <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
+                                                        <option value="">Select</option>
+                                                            @foreach ($wana as $admin)
+                                                                <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-6 mb-2">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="hidden" name="type" value="self" id="type">
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="staff_id">نام پاکستان</label>
+                                                            <select class="form-control  nice-select  form-select" name="name1"
+                                                                id="name_pk_id">
+                                                                <option value="">Select</option>
+                                                                @foreach ($admins as $admin)
+                                                                    <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="date">تاریخ:</label>
+                                                            <input class="form-control" name="date" type="date" id="date">
+                                                        </div>
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="punjab_rent"> خرچہ:</label>
+                                                            <input class="form-control pak_calculation" id="punjab_rent"
+                                                                autocomplete="off" name="kharcha" type="text">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="staff_id">نام افعانی:</label>
+                                                            <select class="form-control  nice-select  form-select" name="name2"
+                                                                id="name_af_id">
+                                                                <option value="">Select</option>
+                                                                @foreach ($admins as $admin)
+                                                                    <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+            
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="Gumrak">گاڑی نمبر :</label>
+                                                            <input class="form-control af_calculation"
+                                                                id="gumrak_aff" autocomplete="off" name="vehicle_num" type="text">
+                                                        </div>
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="Gumrak">تفصیل:</label>
+                                                            <input
+                                                                class="form-control
+                                                        af_calculation"
+                                                                id="gumrak_aff" autocomplete="off" name="details" type="text">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    <!-- button should be here -->
+                                                    <div class="col-sm-4 mt-4">
+                                                        <a aria-controls="collapseExample" aria-expanded="false"
+                                                            class="btn btn-success" data-bs-toggle="collapse" href="#af_form"
+                                                            role="button">
+                                                            +
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2 collapse show" id="af_form" style="">
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="product_owner_id">مال ولا نام:</label>
+                                                            <select class="form-control  nice-select  form-select" name="malwala"
+                                                                id="product_owner_id">
+                                                                <option value="">Select</option>
+                                                                @foreach ($admins as $admin)
+                                                                    <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="self_order_id">مسلسل نمبر:</label>
+                                                            <select class="form-control  nice-select  form-select" name="sde_musalsal_num" id="product_owner_id">
+                                                            <option value="">Select</option>
+                                                                @foreach ($wana as $admin)
+                                                                    <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+            
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="custom">کسټم:</label>
+                                                            <input
+                                                                class="form-control
+                                                            self_pk_calculation"
+                                                                id="self_pk_custom" autocomplete="off" name="sde_ecchange_rate"
+                                                                type="text">
+                                                        </div>
+                                                        
+                                                       
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-6">
+            
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="Total">ٹوٹل افعانی:</label>
+                                                            <input class="form-control" id="af_self_total" autocomplete="off"
+                                                                name="sde_total_af" type="text">
+                                                        </div>
+                                                        <div class="col-sm-12 mb-2">
+                                                            <label for="Rent">munafa :</label>
+                                                            <input class="form-control self_pk_calculation" 
+                                                                id="punjab_self_rent" autocomplete="off" name="sde_munafa"
+                                                                type="text">
+                                                        </div>
+            
+                                                    </div>
+                                                        
+            
+                                                </div>
+                                                <button type="submit" class="btn btn-rounded btn-primary">Save</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 collapse show" id="af_form" style="">
-                                        <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="product_owner_id">مال ولا نام:</label>
-                                                <select class="form-control  nice-select  form-select" name="malwala"
-                                                    id="product_owner_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="custom">کسټم:</label>
-                                                <input
-                                                    class="form-control
-                                                self_pk_calculation"
-                                                    id="self_pk_custom" autocomplete="off" name="sde_ecchange_rate"
-                                                    type="text">
-                                            </div>
-
-                                           
-                                          
-                                            
-                                           
-                                        </div>
-                                        
-                                        <div class="col-sm-6">
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Total">ٹوٹل افعانی:</label>
-                                                <input class="form-control" id="af_self_total" autocomplete="off"
-                                                    name="sde_total_af" type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Rent">munafa :</label>
-                                                <input class="form-control self_pk_calculation" 
-                                                    id="punjab_self_rent" autocomplete="off" name="sde_munafa"
-                                                    type="text">
-                                            </div>
-
-                                        </div>
-                                            
-
-                                    </div>
-                                    <button type="submit" class="btn btn-rounded btn-primary">Save</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
 
-                        {{-- <div class="tab-content">
-                            <div class="tab-pane" id="other">
-                                <form class="table-responsive" action="{{ route('admin.order.other_expense') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-sm-6 mb-2">
-                                            <label for="order_id">مسلسل نمبر:</label>
-                                            <select class="form-control  nice-select  form-select" name="o_musalsal_num" id="product_owner_id">
-                                                <option value="">Select</option>
-                                                    @foreach ($Ghulamkhan as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
-                                                    @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                        </div>
-                                        <div class="col-sm-6" id="other_pk_form">
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام پاکستانی:</label>
-                                                <select class="form-control  nice-select  form-select"
-                                                    name="o_dealer_pk" id="delear_name_pk_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="punjab_rent">کریه پنجاب:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_punjab_rent" autocomplete="off" name="o_kiraya_punjab"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="custom">کسټم :</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_custom" autocomplete="off" name="o_custom_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="labour">مزدوری:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_labour" autocomplete="off" name="o_labour_pk"
-                                                    type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="NLC">انلسی:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_nlc" autocomplete="off" name="o_nlc_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Kanta">کانټاه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_kanta" autocomplete="off" name="o_kanta_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Comission">کمشن:</label>
-                                                <input
-                                                    class="form-control
-                                                other_pak_calculation"
-                                                    id="other_comission" autocomplete="off" name="o_commission_pk"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="Total">جمله کلدار:</label>
-                                                <input class="form-control" id="other_pk_total" autocomplete="off"
-                                                    name="o_total_pk" type="text">
-                                            </div>
-                                        </div>
-                                        <!-- 1st six col end here -->
-                                        <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="staff_id">نام افغانستانی:</label>
-
-                                                <select class="form-control  nice-select  form-select"
-                                                    name="o_dealer_af" id="delear_name_af_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($admins as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="other_af_rent">کریه پنجاب:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_rent" autocomplete="off" name="o_gumrak_af"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="fixed_rent">مطابق کریه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_fixed_rent" autocomplete="off"
-                                                    name="o_mutabik_kiraya_af" type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="extra_rent">اضافی کریه:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_extra_rent"  name="o_extra_kiraya_af"
-                                                    type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="ponch">پونچ:</label>
-                                                <input
-                                                    class="form-control
-                                                other_af_calculation"
-                                                    id="other_af_ponch" autocomplete="off" name="o_ponch_af"
-                                                    type="text">
-                                            </div>
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="total">جمله افغانستانی:</label>
-                                                <input class="form-control" id="other_af_total" autocomplete="off"
-                                                    name="o_total_af" type="text">
-                                            </div>
-
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="balty_af">عکس</label>
-                                                <input type="file" name="o_balty_af" id="balty_af" multiple="">
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-rounded btn-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> --}}
+                      
                     </div>
                 </div>
-            </div>
+            
             <!-- data table end -->
 
         </div>
