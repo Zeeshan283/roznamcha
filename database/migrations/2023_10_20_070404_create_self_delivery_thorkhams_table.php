@@ -16,15 +16,11 @@ return new class extends Migration
         Schema::create('self_delivery_thorkhams', function (Blueprint $table) {
             $table->increments('id'); 
             $table->integer('musalsal_num')->unsigned();
-            $table->foreign('musalsal_num')->references('id')->on('kharlachi_orders'); 
-            $table->integer('name1')->unsigned();
-            $table->foreign('name1')->references('id')->on('admins'); 
-            $table->integer('name2')->unsigned();
-            $table->foreign('name2')->references('id')->on('admins'); 
-            $table->string('date');
-            $table->string('kharcha');
-            $table->string('vehicle_num');
-            $table->string('details');
+            $table->foreign('musalsal_num')->references('id')->on('thorkham_orders'); 
+            $table->integer('name')->unsigned();
+            $table->foreign('name')->references('id')->on('admins'); 
+            $table->string('exchange_rate');
+            $table->string('amount');
             $table->timestamps();
         });
     }

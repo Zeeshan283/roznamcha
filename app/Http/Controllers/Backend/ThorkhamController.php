@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\SelfDeliveryExpenseThorkhams;
 use App\Models\SelfDeliveryThorkhams;
+use App\Models\SelfDeliveryWana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
@@ -30,8 +31,9 @@ class ThorkhamController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view order !');
         }
 
-        $thorkham = ThorkhamOrders::all();
-        return view('backend.pages.orders.thorkham.index', compact('thorkham'));
+        $ThorkhamOrders = ThorkhamOrders::with('self', 'expense')->with('admin')->get();
+
+        return view('backend.pages.orders.thorkham.index', compact('ThorkhamOrders'));
     }
 
     public function create()
@@ -50,101 +52,165 @@ class ThorkhamController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'name1' => 'required|string',
+            'name2' => 'required|string',
+            'n_plate' => 'required|string',
+            'port' => 'required|string',
+            'p_of_d' => 'required|string',
+            'n_plate_usd' => 'required|integer',
+            'product' => 'required|string',
+            'quantity' => 'required|numeric',
+            'weight' => 'required|numeric',
+        ]);
+
         $record = new ThorkhamOrders();
-        $record->malwala = $request['malwala'];
-        $record->musalsal_num = $request['musalsal_num'];
-        $record->date = $request['date'];
-        $record->city = $request['city'];
-        $record->product = $request['product'];
-        $record->vehicle_num = $request['vehicle_num'];
-        $record->quantity = $request['quantity'];
-        $record->detail = $request['detail'];
-        $record->weight = $request['weight'];
-        $record->weight_acc_to_50kg = $request['weight_acc_to_50kg'];
-        $record->total_qty = $request['total_qty'];
-        $record->narkh = $request['narkh'];
-        $record->comission = $request['comission'];
-        $record->ponch = $request['ponch'];
-        $record->total = $request['total'];
-        $record->gumrak_id	 = $request['gumrak_id'];
-        $record->totl_gumrak = $request['totl_gumrak'];
-
-
-        if ($request->hasFile('bilty')) {
-            $image = $request->file('bilty');
-            $imageName = uniqid() . '.' . $image->extension();
-            $image->move('upload/thorkham/self_order', $imageName);
-        
-            // Set the 'bilty' column to the file path
-            $record->bilty = 'upload/thorkham/self_order/' . $imageName;
-        }
-
-        // dd($record);
-
-
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->name1 = $request->input('name1');
+        $record->name2 = $request->input('name2');
+        $record->vehicle_num = $request->input('n_plate');
+        $record->port = $request->input('port');
+        $record->p_of_d = $request->input('p_of_d');
+        $record->n_plate_usd = $request->input('n_plate_usd');
+        $record->product = $request->input('product');
+        $record->quantity = $request->input('quantity');
+        $record->weight = $request->input('weight');
+        $record->date = $request->input('date');
         $record->save();
 
-        session()->flash('success', 'Record created successfully');
-        return redirect()->back();
 
+        session()->flash('success', 'Record created successfully');
+
+        return redirect()->back();
     }
 
-    public function selfdata(Request $request)
+    public function tselfexpense(Request $request)
     {
-        // dd($request->all());
+        // dd($request->all());    
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
+        
+        $record = new SelfDeliveryExpenseThorkhams();
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->save();
 
-        if($request['sde_munafa'] == '' ){
-            $record = new SelfDeliveryThorkhams();
-            $record->musalsal_num = $request['musalsal_num'];
-            $record->name1 = $request['name1'];
-            $record->name2 = $request['name2'];
-            $record->date = $request['date'];
-            $record->kharcha = $request['kharcha'];
-            $record->vehicle_num = $request['vehicle_num'];
-            $record->details = $request['details'];
-            $record->save();
-        }
-        else {
-            $self_record = new SelfDeliveryExpenseThorkhams();
-            $self_record->malwala = $request['malwala'];
-            $self_record->musalsal_num = $request['sde_musalsal_num'];
-            $self_record->ecchange_rate = $request['sde_ecchange_rate'];
-            $self_record->total_af = $request['sde_total_af'];
-            $self_record->munafa = $request['sde_munafa'];
-     
-            $self_record->save();    
-        }
-    
         
         session()->flash('success', 'Record created successfully');
         return redirect()->back();
     }
+    public function tself(Request $request)
+        {
+            // dd($request->all());
+            $validatedData = $request->validate([
+                'musalsal_num' => 'required|string',
+                'name' => 'required|string',
+                'exchange_rate' => 'required|string',
+                'amount' => 'required|string',
+            ]);
+            
+            $record = new SelfDeliveryThorkhams();
+            $record->musalsal_num = $request->input('musalsal_num');
+            $record->name = $request->input('name');
+            $record->exchange_rate = $request->input('exchange_rate');
+            $record->amount = $request->input('amount');
+            $record->save();
+
+            
+            session()->flash('success', 'Record created successfully');
+            return redirect()->back();
+        }
 
     public function edit($id)
     {
+
+        // return view('backend.pages.orders.thorkham.edit', ['record' => $record]);
+
         $record = ThorkhamOrders::find($id);
 
-        if (!$record) {
-            // Handle the case where the record with the given ID is not found.
-            return redirect()->back()->with('error', 'Record not found.');
-        }
+        $self = SelfDeliveryThorkhams::where('musalsal_num',$record->id)->first();
+        $self_expense = SelfDeliveryExpenseThorkhams::where('musalsal_num',$record->id)->first();
 
-        return view('backend.pages.orders.thorkham.edit', ['record' => $record]);
+        $admins  = Admin::all();
+        $thorkham  = ThorkhamOrders::all();
+        return view('backend.pages.orders.thorkham.edit',compact('admins','thorkham','record','self','self_expense') );
     }
 
-    public function update(Request $request, $id)
-    {
+    
+
+    public function update(Request $request, $id) {
         // dd($request->all());
-        $record = ThorkhamOrders::find($id);
-        if (!$record) {
-            return redirect()->back()->with('error', 'no record found');
-        }
-        $record->update($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'name1' => 'required|string',
+            'name2' => 'required|string',
+            'n_plate' => 'required|string',
+            'port' => 'required|string',
+            'p_of_d' => 'required|string',
+            'n_plate_usd' => 'required|integer',
+            'product' => 'required|string',
+            'quantity' => 'required|numeric',
+            'weight' => 'required|numeric',
+        ]);
         
+        $record = ThorkhamOrders::findOrFail($id);
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->name1 = $request->input('name1');
+        $record->name2 = $request->input('name2');
+        $record->vehicle_num = $request->input('n_plate');
+        $record->port = $request->input('port');
+        $record->p_of_d = $request->input('p_of_d');
+        $record->n_plate_usd = $request->input('n_plate_usd');
+        $record->product = $request->input('product');
+        $record->quantity = $request->input('quantity');
+        $record->weight = $request->input('weight');
+        $record->date = $request->input('date');
+        $record->update();
+    
         session()->flash('success', 'Record updated successfully');
         return redirect()->back();
+    }
+    
+    public function updatekselfexpense(Request $request, $id) {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
+    
+        $record = SelfDeliveryExpenseThorkhams::findOrFail($id);
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->update();
+    
+        session()->flash('success', 'Record updated successfully');
+        return redirect()->back();
+    }
 
+    public function updatekself(Request $request, $id) {
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'name' => 'required|string',
+            'exchange_rate' => 'required|string',
+            'amount' => 'required|string',
+        ]);
+    
+        $record = SelfDeliveryThorkhams::findOrFail($id);
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->name = $request->input('name');
+        $record->exchange_rate = $request->input('exchange_rate');
+        $record->amount = $request->input('amount');
+        $record->save();
+    
+        session()->flash('success', 'Record updated successfully');
+        return redirect()->back();
     }
 
 

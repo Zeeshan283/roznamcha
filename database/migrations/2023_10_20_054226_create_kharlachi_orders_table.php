@@ -15,23 +15,19 @@ return new class extends Migration
     {
         Schema::create('kharlachi_orders', function (Blueprint $table) {
             $table->increments('id'); 
-            $table->integer('malwala')->unsigned();
-            $table->foreign('malwala')->references('id')->on('admins'); 
-            $table->integer('musalsal_num');
             $table->date('date');
-            $table->string('city');
-            $table->string('product');
+            $table->integer('musalsal_num');
+            $table->integer('name1')->unsigned();
+            $table->foreign('name1')->references('id')->on('admins'); 
+            $table->integer('name2')->unsigned();
+            $table->foreign('name2')->references('id')->on('admins'); 
             $table->string('vehicle_num');
+            $table->string('port');
+            $table->string('p_of_d');
+            $table->string('n_plate_usd');
+            $table->string('product');
             $table->string('quantity');
-            $table->text('detail')->nullable();
-            $table->string('kiraya');
-            $table->string('mutabik_kiraya');
-            $table->string('extra_kiraya');
-            $table->string('comission');
-            $table->string('ponch');
-            $table->string('total');
-            $table->string('total_af');
-            $table->string('bilty')->nullable();
+            $table->text('weight');
             $table->timestamps();
         });
     }

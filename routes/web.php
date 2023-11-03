@@ -34,30 +34,38 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('khatas', 'Backend\KhataController', ['names' => 'admin.khatas']);
     
     Route::get('khata/personal/{id}', 'Backend\PersonalController@index')->name('admin.khata.personal.index');  
-
     Route::resource('orders/kharlachi', 'Backend\KharlachiController', ['names' => 'admin.orders.kharlachi']);    
-    Route::post('order/kharlachi','Backend\KharlachiController@selfdata')->name('admin.order.selfdata');
-    Route::post('order/other_kharlachi','Backend\KharlachiController@other_expense')->name('admin.order.other_expense');
+    Route::post('order/kharlachi/selfexpense','Backend\KharlachiController@kselfexpense')->name('admin.order.kselfexpense');
+    Route::put('order/kharlachi/selfexpense/{id}','Backend\KharlachiController@updatekselfexpense')->name('admin.order.updatekselfexpense');
+    Route::put('order/kharlachi/self/{id}','Backend\KharlachiController@updatekself')->name('admin.order.updatekself');
+    Route::post('order/kharlachi/self','Backend\KharlachiController@kself')->name('admin.order.kself');
     Route::get('orders/kharlachi/{id}/destroy','Backend\KharlachiController@destroy')->name('admin.orders.kharlachi.destroy1');
 
     
 
     Route::resource('orders/ghulamkhan', 'Backend\GhulamkhanController', ['names' => 'admin.orders.ghulamkhan']);
-    Route::post('order/ghulamkhan','Backend\GhulamkhanController@selfdata')->name('admin.order.gselfdata');
-    Route::post('order/other_ghulamkhan','Backend\GhulamkhanController@other_expense')->name('admin.order.gother_expense');
+    Route::post('order/ghulamkhan/selfexpense','Backend\GhulamkhanController@gselfexpense')->name('admin.order.gselfexpense');
+    Route::put('order/ghulamkhan/selfexpense/{id}','Backend\GhulamkhanController@updatekselfexpense')->name('admin.order.updategselfexpense');
+    Route::put('order/ghulamkhan/self/{id}','Backend\GhulamkhanController@updatekself')->name('admin.order.updategself');
+    Route::post('order/ghulamkhan/self','Backend\GhulamkhanController@gself')->name('admin.order.gself');
     Route::get('orders/ghulamkhan/{id}/destroy','Backend\GhulamkhanController@destroy')->name('admin.orders.ghulamkhan.destroy1');
 
 
 
     Route::resource('orders/thorkham', 'Backend\ThorkhamController', ['names' => 'admin.orders.thorkham']);
-    Route::post('order/thorkham','Backend\ThorkhamController@selfdata')->name('admin.order.tselfdata');
+    Route::post('order/thorkham/selfexpense','Backend\ThorkhamController@tselfexpense')->name('admin.order.tselfexpense');
+    Route::put('order/thorkham/selfexpense/{id}','Backend\ThorkhamController@updatekselfexpense')->name('admin.order.updatetselfexpense');
+    Route::put('order/thorkham/self/{id}','Backend\ThorkhamController@updatekself')->name('admin.order.updatetself');
+    Route::post('order/thorkham/self','Backend\ThorkhamController@tself')->name('admin.order.tself');
     Route::get('orders/thorkham/{id}/destroy','Backend\ThorkhamController@destroy')->name('admin.orders.thorkham.destroy1');
 
 
 
     Route::resource('orders/wana', 'Backend\WanaController', ['names' => 'admin.orders.wana']);
-    Route::post('order/wana','Backend\WanaController@selfdata')->name('admin.order.wselfdata');
-    Route::post('order/other_wana','Backend\WanaController@other_expense')->name('admin.order.wother_expense');
+    Route::post('order/wana/selfexpense','Backend\WanaController@wselfexpense')->name('admin.order.wselfexpense');
+    Route::put('order/wana/selfexpense/{id}','Backend\WanaController@updatekselfexpense')->name('admin.order.updatewselfexpense');
+    Route::put('order/wana/self/{id}','Backend\WanaController@updatekself')->name('admin.order.updatewself');
+    Route::post('order/wana/self','Backend\WanaController@wself')->name('admin.order.wself');
     Route::get('orders/wana/{id}/destroy','Backend\WanaController@destroy')->name('admin.orders.wana.destroy1');
 
 

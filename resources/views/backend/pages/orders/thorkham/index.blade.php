@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-Thorkham - Roznamcha
+Thorkham Khan - Roznamcha
 @endsection
 @section('styles')
     <!-- Start datatable css -->
@@ -54,12 +54,12 @@ Thorkham - Roznamcha
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-7 align-self-center">
-            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Thorkham</h4>
+            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Thorkham Khan</h4>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb m-0 p-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}" class="text-muted">Dashboard</a></li>
-                        <li class="breadcrumb-item text-muted active" aria-current="page">Order Thorkham</li>
+                        <li class="breadcrumb-item text-muted active" aria-current="page">Order Thorkham Khan</li>
                     </ol>
                 </nav>
             </div>
@@ -79,59 +79,100 @@ Thorkham - Roznamcha
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Thorkham Orders</h4>
+                    <h4 class="card-title">Thorkham Khan Orders</h4>
                     @include('backend.layouts.partials.messages')
 
                     <div class="table-responsive">
                         <table id="multi_col_order"
-                            class="table border table-striped table-bordered text-nowrap" style="width:100%">
-                            <thead>
-                                <tr role="row">
-                                    <th>Action</th>
-                                    <th>تاریخ</th>
-                                    <th>مسلسل نمبر</th>
-                                    <th>مال ولا نام</th>
-                                    <th>گاڑی نمبر</th>
-                                    <th>ولایت</th>
-                                    <th>جنس</th>
-                                    <th>تعداد</th>
-                                    <th>تفصیل</th>
+                        class="table border table-striped table-bordered text-nowrap" style="width:100%">
+                        <thead>
+                            <tr role="row">
+                                <th>Action</th>
+                                <th>Date</th>
+                                <th>Builty No</th>
+                                <th>Name 1</th>
+                                <th>Nubmer Plate</th>
+                                <th>Port</th>
+                                <th>Place of Discharge</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>weight</th>
+                                <th>Mallwala</th>
+                                <th>Expense</th>
+                                <th>Exchange Rate</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            @foreach ($ThorkhamOrders as $data)
+                                <tr>
+                                    <td> 
+                                        <div class="dropdown">
+                                            <button class="btn btn-info btn-sm" id="dropdownButton">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-content" id="dropdownContent">
+                                                <a href="{{ route('admin.orders.thorkham.show', $data->id) }}" class="fa fa-eye text-dark">View</a>
+                                                <a href="{{ route('admin.orders.thorkham.edit', $data->id) }}" class="fa fa-edit text-dark">Edit</a>
+                                                <a href="{{ route('admin.orders.thorkham.destroy1', $data->id) }}" class="fa fa-trash text-black" data-record-id="{{ $data->id }}">Delete</a>
+                                            </div>
+                                        </div>   
+                                    </td>     
+                                    <td>{{$data['date'] }}</td>                                         
+                                    <td>{{$data['musalsal_num']}}</td>
+                                    <td>
+                                            {{$data['admin']['name']}}
+                                    </td> 
+                                    <td>{{$data['vehicle_num']}}</td> 
+                                    <td>{{$data['port']}}</td> 
+                                    <td>{{$data['p_of_d']}}</td> 
+                                    <td>{{$data['product']}}</td>                                         
+                                    <td>{{$data['quantity']}}</td>                                         
+                                    <td>{{$data['weight']}}</td>  
+                                    @php
+                                        $currentMusalsalNum = $data['id'];
+                                        $matchedSelf = collect($data['self'])->firstWhere('musalsal_num', $currentMusalsalNum);
+                                        $matchedexpense = collect($data['expense'])->firstWhere('musalsal_num', $currentMusalsalNum);
+                                    @endphp
+                                    
+                                    @if ($matchedSelf)
+                                        <td>{{ $matchedexpense['admin']['name'] }}</td>
+                                        <td>{{ $matchedexpense['comission'] }}</td>
+                                    @else
+                                        <td colspan="2">No Self Records for Musalsal Num: <span style="color: red">{{ $data['musalsal_num'] }}</span></td>
+                                    @endif 
+
+                                    @if ($matchedSelf)
+                                        <td>{{ $matchedSelf['exchange_rate'] }}</td>
+                                        <td>{{ $matchedSelf['amount'] }}</td>
+                                    @else
+                                        <td colspan="2">No Self Records for Musalsal Num:  <span style="color: red">{{ $data['musalsal_num'] }}</span></td>
+                                    @endif                                                         
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($thorkham as $data)
-                                    <tr>
-                                        <td> 
-                                            <div class="dropdown">
-                                                <button class="btn btn-info btn-sm" id="dropdownButton">
-                                                    <i class="fa fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-content" id="dropdownContent">
-                                                    <a href="{{ route('admin.orders.kharlachi.show', $data->id) }}" class="fa fa-eye text-dark">View</a>
-                                                    <a href="{{ route('admin.orders.kharlachi.edit', $data->id) }}" class="fa fa-edit text-dark">Edit</a>
-                                                    <a href="{{ route('admin.orders.kharlachi.destroy1', $data->id) }}" class="fa fa-trash text-black" data-record-id="{{ $data->id }}">Delete</a>
-                                                </div>
-                                            </div>   
-                                        </td>     
-                                        <td>{{$data->date}}</td>                                         
-                                        <td>{{$data->musalsal_num}}</td>
-                                        <td>
-                                            <a href="{{ route('admin.khata.personal.index', $data->id) }}">{{$data->admin->name}}</a>
-                                        </td>
-                                        <td>{{$data->vehicle_num}}</td>      
-                                        <td>{{$data->city}}</td>                                                                            
-                                        <td>{{$data->product}}</td>                                         
-                                        <td>{{$data->quantity}}</td>                                         
-                                        <td>{{$data->detail}}</td>                                                                          
-                                                                  
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.delete-link').click(function(event) {
+            event.preventDefault(); // Prevent the link from navigating
+
+            if (confirm('Are you sure you want to delete this record?')) {
+                // If the user confirms, submit the form for deletion
+                var recordId = $(this).data('record-id');
+                var form = $('#delete-form-' + recordId);
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection

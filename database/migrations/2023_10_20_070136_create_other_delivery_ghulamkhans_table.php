@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('other_delivery_ghulamkhans', function (Blueprint $table) {
             $table->increments('id'); 
-            $table->integer('malwala')->unsigned();
-            $table->foreign('malwala')->references('id')->on('admins'); 
-            $table->string('ecchange_rate');
-            $table->string('total_af');
-            $table->string('munafa');
+            $table->integer('musalsal_num')->unsigned();
+            $table->foreign('musalsal_num')->references('id')->on('ghulamkhan_orders'); 
+            $table->integer('name')->unsigned();
+            $table->foreign('name')->references('id')->on('admins'); 
+            $table->string('comission');
             $table->timestamps();
         });
     }
