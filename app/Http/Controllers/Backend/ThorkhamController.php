@@ -174,25 +174,25 @@ class ThorkhamController extends Controller
     //     return redirect()->back();
     // }
 
-    // public function tselfexpense(Request $request)
-    // {
-    //     // dd($request->all());    
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'comission' => 'required|string',
-    //         'name' => 'required|string',
-    //     ]);
+    public function tselfexpense(Request $request)
+    {
+        // dd($request->all());    
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
         
-    //     $record = new SelfDeliveryExpenseThorkhams();
-    //     $record->musalsal_num = $request->input('musalsal_num');
-    //     $record->comission = $request->input('comission');
-    //     $record->name = $request->input('name');
-    //     $record->save();
+        $record = new SelfDeliveryExpenseThorkhams();
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->save();
 
         
-    //     session()->flash('success', 'Record created successfully');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'Record created successfully');
+        return redirect()->back();
+    }
     public function tself(Request $request)
         {
             // dd($request->all());
@@ -335,36 +335,36 @@ class ThorkhamController extends Controller
 
     } 
 
-    // public function roznamchast(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'amount_af' => 'required|string',
-    //         'state' => 'required|string',
-    //         'country' => 'required|string',
-    //         'detail' => 'required|string',
-    //     ]);
+    public function roznamchast(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
         
-    //     $thorkham_order = ThorkhamOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $thorkham_order = ThorkhamOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
         
-    //     $name1 = $thorkham_order->name1;
-    //     $date_af = $thorkham_order->date;
+        $name1 = $thorkham_order->name1;
+        $date_af = $thorkham_order->date;
 
-    //     $record = new Roznamchas();
-    //     $record->serial_num = $request->input('musalsal_num');
-    //     $record->date_af = $date_af;
-    //     $record->amount_af = $request->input('amount_af');
-    //     $record->state = $request->input('state');
-    //     $record->khata_banam = $name1;
-    //     $record->country = $request->input('country');
-    //     $record->detail = $request->input('detail');
-    //     $record->save();
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
 
 
-    //     session()->flash('success', 'Record Created successfully');
-    //     return redirect()->back();
-    // }   
+        session()->flash('success', 'Record Created successfully');
+        return redirect()->back();
+    }   
 
     public function updateroznamchast(Request $request, $id)
     {

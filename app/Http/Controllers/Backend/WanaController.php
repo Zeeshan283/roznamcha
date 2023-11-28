@@ -326,33 +326,33 @@ class WanaController extends Controller
 
     } 
 
-    // public function roznamchast(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'date_af' => 'required|string',
-    //         'amount_af' => 'required|string',
-    //         'state' => 'required|string',
-    //         'name' => 'required|string',
-    //         'country' => 'required|string',
-    //         'detail' => 'required|string',
-    //     ]);
+    public function roznamchast(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'date_af' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'name' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
 
-    //     $record = new Roznamchas();
-    //     $record->serial_num = $request->input('musalsal_num');
-    //     $record->date_af = $request->input('date_af');
-    //     $record->amount_af = $request->input('amount_af');
-    //     $record->state = $request->input('state');
-    //     $record->khata_banam = $request->input('name');
-    //     $record->country = $request->input('country');
-    //     $record->detail = $request->input('detail');
-    //     $record->save();
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $request->input('date_af');
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $request->input('name');
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
 
 
-    //     session()->flash('success', 'Record Created successfully');
-    //     return redirect()->back();
-    // }   
+        session()->flash('success', 'Record Created successfully');
+        return redirect()->back();
+    }   
 
     public function updateroznamchast(Request $request, $id)
     {

@@ -254,7 +254,6 @@
                                     <form class="table-responsive" action="{{ route('admin.order.updateroznamchast', ['id' => $roznamcha->id]) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-
                                         <div class="row mt-2 collapse show">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
@@ -370,7 +369,7 @@
                 
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                @if($roznamcha)
+                                @if($self)
                                     <form class="table-responsive" action="{{ route('admin.order.updatetself', ['id' => $self->id]) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')

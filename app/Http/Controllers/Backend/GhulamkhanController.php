@@ -344,36 +344,36 @@ class GhulamkhanController extends Controller
     } 
 
 
-    // public function roznamchasg(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'amount_af' => 'required|string',
-    //         'state' => 'required|string',
-    //         'country' => 'required|string',
-    //         'detail' => 'required|string',
-    //     ]);
+    public function roznamchasg(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
         
-    //     $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
         
-    //     $name1 = $ghulamkhan_order->name1;
-    //     $date_af = $ghulamkhan_order->date;
+        $name1 = $ghulamkhan_order->name1;
+        $date_af = $ghulamkhan_order->date;
 
-    //     $record = new Roznamchas();
-    //     $record->serial_num = $request->input('musalsal_num');
-    //     $record->date_af = $date_af;
-    //     $record->amount_af = $request->input('amount_af');
-    //     $record->state = $request->input('state');
-    //     $record->khata_banam = $name1;
-    //     $record->country = $request->input('country');
-    //     $record->detail = $request->input('detail');
-    //     $record->save();
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
 
 
-    //     session()->flash('success', 'Record Created successfully');
-    //     return redirect()->back();
-    // }   
+        session()->flash('success', 'Record Created successfully');
+        return redirect()->back();
+    }   
 
     public function updateroznamchasg(Request $request, $id)
     {
