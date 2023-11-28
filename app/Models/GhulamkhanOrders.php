@@ -28,4 +28,9 @@ class GhulamkhanOrders extends Model
     {
         return $this->hasMany(SelfDeliveryExpenseGhulamkhan::class, 'musalsal_num', 'id');
     }
+    public function roznamcha()
+    {
+        return $this->hasMany(Roznamchas::class, 'serial_num');
+
+    }
 }

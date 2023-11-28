@@ -217,7 +217,7 @@
                                                     <select class="form-control  nice-select  form-select" name="musalsal_num"
                                                         id="product_owner_id">
                                                         <option value="">Select</option>
-                                                        @foreach ($ghulam as $admin)
+                                                        @foreach ($ghulamkhan as $admin)
                                                             <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}
                                                             </option>
                                                         @endforeach
@@ -435,7 +435,7 @@
                                                 <select class="form-control  nice-select  form-select" name="musalsal_num"
                                                     id="product_owner_id">
                                                     <option value="">Select</option>
-                                                    @foreach ($ghulam as $admin)
+                                                    @foreach ($ghulamkhan as $admin)
                                                         <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}
                                                         </option>
                                                     @endforeach

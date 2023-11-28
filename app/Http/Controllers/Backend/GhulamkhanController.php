@@ -52,7 +52,6 @@ class GhulamkhanController extends Controller
 
 
     public function store(Request $request){
-        
         $validatedData = $request->validate([
             'musalsal_num' => 'required|string',
             'name1' => 'required|string',
@@ -89,15 +88,6 @@ class GhulamkhanController extends Controller
         $record->save();
 
 
-        session()->flash('success', 'Record created successfully');
-
-        return redirect()->back();
-
-    }
-
-    public function gselfexpense(Request $request)
-    {
-        // dd($request->all());
         $validatedData = $request->validate([
             'musalsal_num' => 'required|string',
             'comission' => 'required|string',
@@ -110,10 +100,99 @@ class GhulamkhanController extends Controller
         $record->name = $request->input('name');
         $record->save();
 
+
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
         
-        session()->flash('success', 'Record created successfully');
+        $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        
+        $name1 = $ghulamkhan_order->name1;
+        $date_af = $ghulamkhan_order->date;
+
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
+
+
+        session()->flash('success', 'Record Created successfully');
         return redirect()->back();
+
+
     }
+    // public function store1(Request $request){
+        
+    //     $validatedData = $request->validate([
+    //         'musalsal_num' => 'required|string',
+    //         'name1' => 'required|string',
+    //         'name2' => 'required|string',
+    //         'bulit_no' => 'required|string',
+    //         'name_driver' => 'required|string',
+    //         'driver_num' => 'required|string',
+    //         'vehicle_num' => 'required|string',
+    //         'loading_place' => 'required|string',
+    //         'port' => 'required|string',
+    //         'p_of_d' => 'required|string',
+    //         'n_plate_usd' => 'required|integer',
+    //         'product' => 'required|string',
+    //         'quantity' => 'required|numeric',
+    //         'weight' => 'required|numeric',
+    //     ]);
+
+    //     $record = new GhulamkhanOrders();
+    //     $record->musalsal_num = $request->input('musalsal_num');
+    //     $record->name1 = $request->input('name1');
+    //     $record->name2 = $request->input('name2');
+    //     $record->bulit_no = $request->input('bulit_no');
+    //     $record->name_driver = $request->input('name_driver');
+    //     $record->driver_num = $request->input('driver_num');
+    //     $record->vehicle_num = $request->input('vehicle_num');
+    //     $record->loading_place = $request->input('loading_place');
+    //     $record->port = $request->input('port');
+    //     $record->p_of_d = $request->input('p_of_d');
+    //     $record->n_plate_usd = $request->input('n_plate_usd');
+    //     $record->product = $request->input('product');
+    //     $record->quantity = $request->input('quantity');
+    //     $record->weight = $request->input('weight');
+    //     $record->date = $request->input('date');
+    //     $record->save();
+
+
+    //     session()->flash('success', 'Record created successfully');
+
+    //     return redirect()->back();
+
+    // }
+
+    // public function gselfexpense(Request $request)
+    // {
+    //     // dd($request->all());
+    //     $validatedData = $request->validate([
+    //         'musalsal_num' => 'required|string',
+    //         'comission' => 'required|string',
+    //         'name' => 'required|string',
+    //     ]);
+        
+    //     $record = new SelfDeliveryExpenseGhulamkhan();
+    //     $record->musalsal_num = $request->input('musalsal_num');
+    //     $record->comission = $request->input('comission');
+    //     $record->name = $request->input('name');
+    //     $record->save();
+
+        
+    //     session()->flash('success', 'Record created successfully');
+    //     return redirect()->back();
+    // }
     public function gself(Request $request)
         {
             // dd($request->all());
@@ -265,36 +344,36 @@ class GhulamkhanController extends Controller
     } 
 
 
-    public function roznamchasg(Request $request)
-    {
-        // dd($request->all());
-        $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
-        ]);
+    // public function roznamchasg(Request $request)
+    // {
+    //     // dd($request->all());
+    //     $validatedData = $request->validate([
+    //         'musalsal_num' => 'required|string',
+    //         'amount_af' => 'required|string',
+    //         'state' => 'required|string',
+    //         'country' => 'required|string',
+    //         'detail' => 'required|string',
+    //     ]);
         
-        $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+    //     $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
         
-        $name1 = $ghulamkhan_order->name1;
-        $date_af = $ghulamkhan_order->date;
+    //     $name1 = $ghulamkhan_order->name1;
+    //     $date_af = $ghulamkhan_order->date;
 
-        $record = new Roznamchas();
-        $record->serial_num = $request->input('musalsal_num');
-        $record->date_af = $date_af;
-        $record->amount_af = $request->input('amount_af');
-        $record->state = $request->input('state');
-        $record->khata_banam = $name1;
-        $record->country = $request->input('country');
-        $record->detail = $request->input('detail');
-        $record->save();
+    //     $record = new Roznamchas();
+    //     $record->serial_num = $request->input('musalsal_num');
+    //     $record->date_af = $date_af;
+    //     $record->amount_af = $request->input('amount_af');
+    //     $record->state = $request->input('state');
+    //     $record->khata_banam = $name1;
+    //     $record->country = $request->input('country');
+    //     $record->detail = $request->input('detail');
+    //     $record->save();
 
 
-        session()->flash('success', 'Record Created successfully');
-        return redirect()->back();
-    }   
+    //     session()->flash('success', 'Record Created successfully');
+    //     return redirect()->back();
+    // }   
 
     public function updateroznamchasg(Request $request, $id)
     {
@@ -324,7 +403,7 @@ class GhulamkhanController extends Controller
 
     public function invoice($id)
     {
-        $inv = GhulamkhanOrders::with('self', 'expense')->with('admin')->findOrFail($id);
+        $inv = GhulamkhanOrders::with('self', 'expense','roznamcha')->with('admin')->findOrFail($id);
 
         return view('backend.pages.invoice.index',compact('inv'));
     }

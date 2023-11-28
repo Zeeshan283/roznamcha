@@ -254,9 +254,9 @@
                                 <tr height="200px">
                                     <td class="table-data" rowspan="3" >Data 1</td>
                                     <td class="table-data" rowspan="3" >Data 2</td>
-                                    <td class="table-data" rowspan="3" >Data 3</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->weight}}</td>
                                     <td class="table-data" rowspan="3" >Data 4</td>
-                                    <td class="table-data" rowspan="3" >Data 5</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->details}}</td>
                                     <td class="table-data" rowspan="3" >Data 6</td>
                                 </tr> 
                                 <!-- Add more rows as needed -->

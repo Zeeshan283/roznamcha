@@ -140,8 +140,8 @@
 
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-rounded btn-primary">Save</button>
-                        </form>
+                            {{-- <button type="submit" class="btn btn-rounded btn-primary">Save</button> --}}
+                        {{-- </form> --}}
                     </div>
                 </div>
             </div>
@@ -157,12 +157,12 @@
                         <h4 class="header-title">Commission</h4>
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                <form class="table-responsive" action="{{ route('admin.order.tselfexpense') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
+                                {{-- <form class="table-responsive" action="{{ route('admin.order.tselfexpense') }}" method="POST" enctype="multipart/form-data"> --}}
+                                    {{-- @csrf --}}
                                     
                                         <div class="row mt-2 collapse show"  >
                                         <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
+                                            {{-- <div class="col-sm-12 mb-2">
                                                 <label for="self_order_id">مسلسل نمبر:</label>
                                                 <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
                                                 <option value="">Select</option>
@@ -170,7 +170,7 @@
                                                         <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                             
                                             
                                             <div class="col-sm-12 mb-2">
@@ -202,8 +202,8 @@
                                             
 
                                     </div>
-                                    <button type="submit" class="btn btn-rounded btn-primary">Save</button>
-                                </form>
+                                    {{-- <button type="submit" class="btn btn-rounded btn-primary">Save</button> --}}
+                                {{-- </form> --}}
                             </div>
                         </div>
                     </div>
@@ -217,13 +217,12 @@
                         <h4 class="header-title">Roznamcha</h4>
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                <form class="table-responsive" action="{{ route('admin.order.roznamchast') }}"
-                                    method="POST" enctype="multipart/form-data">
-                                    @csrf
+                                {{-- <form class="table-responsive" action="{{ route('admin.order.roznamchast') }}" method="POST" enctype="multipart/form-data"> --}}
+                                    {{-- @csrf --}}
 
                                     <div class="row mt-2 collapse show">
                                         <div class="col-sm-6">
-                                            <div class="col-sm-12 mb-2">
+                                            {{-- <div class="col-sm-12 mb-2">
                                                 <label for="self_order_id">مسلسل نمبر:</label>
                                                 <select class="form-control  nice-select  form-select" name="musalsal_num"
                                                     id="product_owner_id">
@@ -233,7 +232,7 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-sm-12 mb-2">
                                                 <label for="serial_no"> Amount Af:</label>
                                                 <input class="form-control" autocomplete="off" name="amount_af" type="amount_af"
