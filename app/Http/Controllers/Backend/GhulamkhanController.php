@@ -67,6 +67,7 @@ class GhulamkhanController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'kariya' => 'required|numeric',
         ]);
 
         $record = new GhulamkhanOrders();
@@ -84,25 +85,25 @@ class GhulamkhanController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->save();
 
+        $savedId = $record->id;
 
         $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
             'comission' => 'required|string',
             'name' => 'required|string',
         ]);
         
         $record = new SelfDeliveryExpenseGhulamkhan();
-        $record->musalsal_num = $request->input('musalsal_num');
+        $record->musalsal_num = $savedId;
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
         $record->save();
 
 
         $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
             'amount_af' => 'required|string',
             'state' => 'required|string',
             'country' => 'required|string',
@@ -115,7 +116,7 @@ class GhulamkhanController extends Controller
         $date_af = $ghulamkhan_order->date;
 
         $record = new Roznamchas();
-        $record->serial_num = $request->input('musalsal_num');
+        $record->serial_num = $savedId;
         $record->date_af = $date_af;
         $record->amount_af = $request->input('amount_af');
         $record->state = $request->input('state');
@@ -246,6 +247,7 @@ class GhulamkhanController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'kariya' => 'required|numeric',
         ]);
         
         $record = GhulamkhanOrders::findOrFail($id);
@@ -263,6 +265,7 @@ class GhulamkhanController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->update();
     

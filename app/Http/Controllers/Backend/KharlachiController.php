@@ -110,6 +110,7 @@ class KharlachiController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'kariya' => 'required|numeric',
         ]);
 
         $record = new KharlachiOrders();
@@ -127,20 +128,21 @@ class KharlachiController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->save();
 
-
+        $savedId = $record->id;
+        // dd($savedId);
         // second form 
 
         $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
             'comission' => 'required|string',
             'name' => 'required|string',
         ]);
         
         $record = new SelfDeliveryExpenseKharlachis();
-        $record->musalsal_num = $request->input('musalsal_num');
+        $record->musalsal_num = $savedId;
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
         $record->save();
@@ -150,7 +152,6 @@ class KharlachiController extends Controller
 
 
         $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
             'amount_af' => 'required|string',
             'state' => 'required|string',
             'country' => 'required|string',
@@ -163,7 +164,7 @@ class KharlachiController extends Controller
         $date_af = $kharlachi_order->date;
 
         $record = new Roznamchas();
-        $record->serial_num = $request->input('musalsal_num');
+        $record->serial_num = $savedId;
         $record->date_af = $date_af;
         $record->amount_af = $request->input('amount_af');
         $record->state = $request->input('state');
@@ -221,25 +222,25 @@ class KharlachiController extends Controller
 
     // }
 
-    // public function kselfexpense(Request $request)
-    // {
-    //     // dd($request->all());    
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'comission' => 'required|string',
-    //         'name' => 'required|string',
-    //     ]);
+    public function kselfexpense(Request $request)
+    {
+        // dd($request->all());    
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
         
-    //     $record = new SelfDeliveryExpenseKharlachis();
-    //     $record->musalsal_num = $request->input('musalsal_num');
-    //     $record->comission = $request->input('comission');
-    //     $record->name = $request->input('name');
-    //     $record->save();
+        $record = new SelfDeliveryExpenseKharlachis();
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->save();
 
         
-    //     session()->flash('success', 'Record created successfully');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'Record created successfully');
+        return redirect()->back();
+    }
     public function kself(Request $request)
         {
             // dd($request->all());
@@ -293,6 +294,7 @@ class KharlachiController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'kariya' => 'required|numeric',
         ]);
         
         $record = KharlachiOrders::findOrFail($id);
@@ -310,6 +312,7 @@ class KharlachiController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->update();
     
@@ -389,36 +392,36 @@ class KharlachiController extends Controller
 
     } 
 
-    // public function roznamchask(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'amount_af' => 'required|string',
-    //         'state' => 'required|string',
-    //         'country' => 'required|string',
-    //         'detail' => 'required|string',
-    //     ]);
+    public function roznamchask(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
         
-    //     $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
         
-    //     $name1 = $kharlachi_order->name1;
-    //     $date_af = $kharlachi_order->date;
+        $name1 = $kharlachi_order->name1;
+        $date_af = $kharlachi_order->date;
 
-    //     $record = new Roznamchas();
-    //     $record->serial_num = $request->input('musalsal_num');
-    //     $record->date_af = $date_af;
-    //     $record->amount_af = $request->input('amount_af');
-    //     $record->state = $request->input('state');
-    //     $record->khata_banam = $name1;
-    //     $record->country = $request->input('country');
-    //     $record->detail = $request->input('detail');
-    //     $record->save();
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
 
 
-    //     session()->flash('success', 'Record Created successfully');
-    //     return redirect()->back();
-    // }   
+        session()->flash('success', 'Record Created successfully');
+        return redirect()->back();
+    }   
 
     public function updateroznamchask(Request $request, $id)
     {

@@ -85,18 +85,20 @@ class WanaController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->save();
 
+        $savedId = $record->id;
+
 
         $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
             'comission' => 'required|string',
             'name' => 'required|string',
         ]);
         
         $record = new SelfDeliveryExpenseWana();
-        $record->musalsal_num = $request->input('musalsal_num');
+        $record->musalsal_num = $savedId;
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
         $record->save();
@@ -115,7 +117,7 @@ class WanaController extends Controller
         $date_af = $kharlachi_order->date;
 
         $record = new Roznamchas();
-        $record->serial_num = $request->input('musalsal_num');
+        $record->serial_num = $savedId;
         $record->date_af = $date_af;
         $record->amount_af = $request->input('amount_af');
         $record->state = $request->input('state');
@@ -244,6 +246,7 @@ class WanaController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'kariya' => 'required|numeric',
         ]);
         
         $record = WanaOrders::findOrFail($id);
@@ -261,6 +264,7 @@ class WanaController extends Controller
         $record->product = $request->input('product');
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
+        $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
         $record->update();
     

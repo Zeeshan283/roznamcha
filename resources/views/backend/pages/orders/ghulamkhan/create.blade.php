@@ -138,6 +138,11 @@
                                         <input class="form-control" autocomplete="off" name="weight" type="text"
                                             id="city">
                                     </div>
+                                    <div class="col-sm-4 mb-2">
+                                        <label for="city">Kariya/CRM:</label>
+                                        <input class="form-control" autocomplete="off" name="kariya" type="text"
+                                            id="city">
+                                    </div>
 
                                 </div>
                             </div>

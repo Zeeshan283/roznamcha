@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('product');
             $table->string('quantity');
             $table->text('weight');
+            $table->text('kariya');
             $table->timestamps();
         });
     }

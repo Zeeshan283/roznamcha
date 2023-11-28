@@ -121,23 +121,23 @@
                         <!-- Lower row divided into 4 columns -->
                         <div class="row">
                             <div class="col-md-3 border-right">
-                                <p class="text-center"><strong>محب الله</strong>  0780000475</p>
-                                <p class="pl-2"><strong></strong>  0792498000</p>
-                                <p class="text-center"><strong>انور الله</strong>  0780000475</p>
+                                <p class="text-left"><strong>محب الله</strong>  0780000475</p>
+                                <p><strong></strong>  0792498000</p>
+                                <p class="text-left"><strong>انور الله</strong>  0780000475</p>
                             </div>
                             <div class="col-md-3 border-right">
-                                <p class="text-center"><strong>نصر الله</strong> 0704908767</p>
-                                <p class="pl-2"><strong></strong>  0780967296</p>
-                                <p class="text-center"><strong>وطن يار </strong> 0793837383</p>
+                                <p class="text-left"><strong>نصر الله</strong> 0704908767</p>
+                                <p><strong></strong>  0780967296</p>
+                                <p class="text-left"><strong>وطن يار </strong> 0793837383</p>
                             </div>
                             <div class="col-md-3 border-right">
-                                <p class="text-center"><strong>واحد الله</strong> 700282899</p>
-                                <p class="pl-2"><strong></strong>  0771500060</p>
-                                <p class="text-center"><strong>عابد الله </strong> 0702969916</p>                            </div>
+                                <p class="text-left"><strong>واحد الله</strong> 700282899</p>
+                                <p  ><strong></strong>  0771500060</p>
+                                <p class="text-left"><strong>عابد الله </strong> 0702969916</p>                            </div>
                             <div class="col-md-3">
-                                <p><strong style="text-align: left"> شفیع الله</strong> <br><span class="text-center">0333-0282899</span> </p>
-                                <p><strong></strong>  0332-0282899</p>
-                                <p><strong>  </strong> 091-2552309</p> 
+                                <p><strong style="text-align: left"> شفیع الله</strong> <span class="text-center">03330282899</span> </p>
+                                <p><strong></strong>  03320282899</p>
+                                <p><strong>  </strong> 0912552309</p> 
                             </div>
                         </div>
                     </div>
@@ -252,20 +252,21 @@
                             <tbody>
                                 <!-- Add your table rows here -->
                                 <tr height="200px">
-                                    <td class="table-data" rowspan="3" >Data 1</td>
-                                    <td class="table-data" rowspan="3" >Data 2</td>
+                                    <td class="table-data" rowspan="3">{{$inv->kariya * $inv->weight}}</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->kariya}}</td>
                                     <td class="table-data" rowspan="3" >{{$inv->weight}}</td>
-                                    <td class="table-data" rowspan="3" >Data 4</td>
-                                    <td class="table-data" rowspan="3" >{{$inv->details}}</td>
-                                    <td class="table-data" rowspan="3" >Data 6</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->n_plate_usd}}</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->product}}</td>
+                                    <td class="table-data" rowspan="3" >{{$inv->sharmata ?? Null}}</td>
                                 </tr> 
                                 <!-- Add more rows as needed -->
                             </tbody>
                         </table>
                         <!-- Leaving space for a paragraph -->
-                        <p>This is a placeholder for your paragraph content.</p>
+                        <p style="text-align: right">اینجانب (__________) که شهرتم درفوق ذکر است تعهد میدارم که اجناس بارگیری شده رابه صورت سالم الی محل تخلیه برسانم‌ودر قسمت نگهداری وصحت بودن اجناس متذکره مسولیت داشته وجوابگو میباشم</p>
                         <!-- Creating a line for a signature -->
                         <div class="signature-line"></div>
+                        
                         <p>Signature: ________________________</p>
                     </div>
                 </div>
