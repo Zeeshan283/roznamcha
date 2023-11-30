@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&display=swap" rel="stylesheet">
 
 
-    <title>Your Web Page</title>
+    <title>Invoice</title>
     <style>
         /* Style for rounded boxes */
         .rounded-box {
@@ -109,7 +109,7 @@
             width: 148px;
         }
         .row_height{
-            height: 200px;
+            height: 250px;
         }
         .text-on-line {
             position: absolute;
@@ -127,7 +127,7 @@
             font-size: 1.5em; 
         }
         .row_height{
-            height: 150px;
+            height: 140px;
         }
 
         .line {
