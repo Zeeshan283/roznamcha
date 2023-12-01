@@ -81,8 +81,8 @@
             white-space: nowrap;
         }
         .custom-flag-size {
-        font-size: 3em; /* Adjust the size as needed */
-        }
+            width: 70px;
+            height: auto;        }
         .line {
         border-bottom: 2px solid #333; /* Adjust color and size as needed */
         width: 50%; /* Adjust the width of the line */
@@ -101,15 +101,15 @@
         }
         @media (max-width: 1200px) {
         .custom-flag-size {
-            font-size: 2em; 
-        }
+            width: 100%;
+            height: 100%;        }
 
         .line {
             width: 100%; 
             width: 148px;
         }
         .row_height{
-            height: 250px;
+            height: 180px;
         }
         .text-on-line {
             position: absolute;
@@ -124,10 +124,11 @@
     }
     @media (max-width: 991px) {
         .custom-flag-size {
-            font-size: 1.5em; 
+            width: auto;
+            height: 40px;
         }
         .row_height{
-            height: 140px;
+            height: 130px;
         }
 
         .line {
@@ -145,7 +146,8 @@
     }
         @media (max-width: 768px) {
         .custom-flag-size {
-            font-size: 2em; 
+            width: 30px;
+            height: auto;
         }
 
         .line {
@@ -342,13 +344,16 @@
                                 <div class="line"></div>
                             </div>
                             <div class="col-md-8 text-center" >
-                                <span class="flag-icon flag-icon-az flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-us flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-kz flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-tj flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-kg flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-af flag-icon-lg custom-flag-size"></span>
-                                <span class="flag-icon flag-icon-pk flag-icon-lg custom-flag-size"></span>
+
+                                <img src="/upload/flags/az.svg"  alt="Azerbaijan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/us.svg"  alt="United States Flag" class="custom-flag-size">
+                                <img src="/upload/flags/kz.svg"  alt="Kazakhstan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/tj.svg"  alt="Tajikistan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/kg.svg"  alt="Kyrgyzstan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/af.svg"  alt="Afghanistan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/pk.svg"  alt="Pakistan Flag" class="custom-flag-size">
+
+                              
                             </div>
                             <div class="col-md-2">
                                 <div class="line" style="margin-left: -43px"></div>
@@ -362,20 +367,14 @@
 
 
 <!-- Bootstrap JS and Popper.js scripts -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
 
-
 <script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         function downloadPDF() {
             const element = document.getElementById('pdfContainer');
             html2pdf(element);
@@ -385,8 +384,6 @@
         const downloadBtn = document.getElementById('downloadBtn');
         downloadBtn.addEventListener('click', downloadPDF);
     });
-    </script>
-
 </script>
 </body>
 </html>

@@ -111,7 +111,15 @@ class KharlachiController extends Controller
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
+            'crm' => 'required|numeric',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
         ]);
+        
 
         $record = new KharlachiOrders();
         $record->musalsal_num = $request->input('musalsal_num');
@@ -133,13 +141,6 @@ class KharlachiController extends Controller
         $record->save();
 
         $savedId = $record->id;
-        // dd($savedId);
-        // second form 
-
-        $validatedData = $request->validate([
-            'comission' => 'required|string',
-            'name' => 'required|string',
-        ]);
         
         $record = new SelfDeliveryExpenseKharlachis();
         $record->musalsal_num = $savedId;
@@ -148,18 +149,7 @@ class KharlachiController extends Controller
         $record->save();
 
 
-        // 3rd form 
-
-
-        $validatedData = $request->validate([
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
-        ]);
-        
         $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-        
         $name1 = $kharlachi_order->name1;
         $date_af = $kharlachi_order->date;
 
@@ -295,6 +285,7 @@ class KharlachiController extends Controller
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
+            'crm' => 'required|numeric',
         ]);
         
         $record = KharlachiOrders::findOrFail($id);
@@ -313,6 +304,7 @@ class KharlachiController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
         $record->update();
     
@@ -452,10 +444,10 @@ class KharlachiController extends Controller
     public function invoice($id)
     {
         $inv = KharlachiOrders::with('self', 'expense')->with('admin')->findOrFail($id);
-
+  
         return view('backend.pages.invoice.index',compact('inv'));
     }
 
 
-    
+
 }

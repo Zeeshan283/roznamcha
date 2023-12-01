@@ -138,8 +138,12 @@
                                             id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
-                                        <label for="city">Kariya/CRM:</label>
+                                        <label for="city">CRM:</label>
                                         <input class="form-control" autocomplete="off" name="kariya" type="text"
+                                            id="city">
+                                    </div><div class="col-sm-4 mb-2">
+                                        <label for="city">CRM:</label>
+                                        <input class="form-control" autocomplete="off" name="crm" type="text"
                                             id="city">
                                     </div>
 
@@ -305,6 +309,11 @@
                                             <label for="Total"> Exchange Rate:</label>
                                             <input class="form-control" id="af_self_total" autocomplete="off"
                                                 name="exchange_rate" type="text">
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <label for="Total"> Amount Af:</label>
+                                            <input class="form-control" id="af_self_total" autocomplete="off"
+                                                name="amount_af" type="text">
                                         </div>
 
                                     </div>

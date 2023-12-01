@@ -10,7 +10,7 @@
     <style>
         .form-check-label {
             text-transform: capitalize;
-        }   
+        }
     </style>
 @endsection
 
@@ -41,7 +41,8 @@
                         <h4 class="header-title">Create Order Kharlachi</h4>
                         @include('backend.layouts.partials.messages')
 
-                        <form action="{{ route('admin.orders.kharlachi.update', ['kharlachi' => $record->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.orders.kharlachi.update', ['kharlachi' => $record->id]) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -49,19 +50,19 @@
                                 <div class=" row append_data" id="order_form">
                                     <div class="col-sm-4 mb-2">
                                         <label for="serial_no"> Date:</label>
-                                        <input class="form-control" autocomplete="off" name="date" type="date" value="{{$record->date}}"
-                                            id="serial_no">
+                                        <input class="form-control" autocomplete="off" name="date" type="date"
+                                            value="{{ $record->date }}" id="serial_no">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="serial_no">مسلسل نمبر:</label>
-                                        <input class="form-control" autocomplete="off" name="musalsal_num" type="text" value="{{$record->musalsal_num}}"
-                                            id="serial_no">
+                                        <input class="form-control" autocomplete="off" name="musalsal_num" type="text"
+                                            value="{{ $record->musalsal_num }}" id="serial_no">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="product_owner_id">Name 1:</label>
                                         <select class="form-control  nice-select  form-select" name="name1"
                                             id="product_owner_id">
-                                            <option value="{{$record->name1}}">{{$record->admin->name}}</option>
+                                            <option value="{{ $record->name1 }}">{{ $record->admin->name }}</option>
                                             @foreach ($admins as $admin)
                                                 <option value="{{ $admin->id }}">{{ $admin->name }}</option>
                                             @endforeach
@@ -71,76 +72,81 @@
                                         <label for="product_owner_id">Name 2:</label>
                                         <select class="form-control  nice-select  form-select" name="name2"
                                             id="product_owner_id">
-                                            <option value="{{$record->name2}}">{{$record->admin1->name}}</option>
+                                            <option value="{{ $record->name2 }}">{{ $record->admin1->name }}</option>
                                             @foreach ($admins as $admin)
                                                 <option value="{{ $admin->id }}">{{ $admin->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">BULIT NO:</label>
-                                        <input class="form-control" autocomplete="off" name="bulit_no" type="text" value="{{$record->bulit_no}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="bulit_no" type="text"
+                                            value="{{ $record->bulit_no }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Name Driver:</label>
-                                        <input class="form-control" autocomplete="off" name="name_driver" type="text" value="{{$record->name_driver}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="name_driver" type="text"
+                                            value="{{ $record->name_driver }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Driver Mobile no:</label>
-                                        <input class="form-control" autocomplete="off" name="driver_num" type="text" value="{{$record->driver_num}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="driver_num" type="text"
+                                            value="{{ $record->driver_num }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Number Plate:</label>
-                                        <input class="form-control" autocomplete="off" name="vehicle_num" type="text" value="{{$record->vehicle_num}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="vehicle_num" type="text"
+                                            value="{{ $record->vehicle_num }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Loading place:</label>
-                                        <input class="form-control" autocomplete="off" name="loading_place" type="text" value="{{$record->loading_place}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="loading_place" type="text"
+                                            value="{{ $record->loading_place }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">PORT:</label>
-                                        <input class="form-control" autocomplete="off" name="port" type="text" value="{{$record->port}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="port" type="text"
+                                            value="{{ $record->port }}" id="city">
                                     </div>
-                                    
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Place of Dischange:</label>
-                                        <input class="form-control" autocomplete="off" name="p_of_d" type="text" value="{{$record->p_of_d}}"
-                                            id="city">
-                                    </div> 
-                                    
+                                        <input class="form-control" autocomplete="off" name="p_of_d" type="text"
+                                            value="{{ $record->p_of_d }}" id="city">
+                                    </div>
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Number Plate USD:</label>
-                                        <input class="form-control" autocomplete="off" name="n_plate_usd" type="text" value="{{$record->n_plate_usd}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="n_plate_usd" type="text"
+                                            value="{{ $record->n_plate_usd }}" id="city">
                                     </div>
-                                    
+
                                     <div class="col-sm-4 mb-2">
-                                        <label for="city">Product:</label> 
-                                        <input class="form-control" autocomplete="off" name="product" type="text" value="{{$record->product}}"
-                                            id="city">
+                                        <label for="city">Product:</label>
+                                        <input class="form-control" autocomplete="off" name="product" type="text"
+                                            value="{{ $record->product }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Quantity:</label>
-                                        <input class="form-control" autocomplete="off" name="quantity" type="text" value="{{$record->quantity}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="quantity" type="text"
+                                            value="{{ $record->quantity }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">weight:</label>
-                                        <input class="form-control" autocomplete="off" name="weight" type="text" value="{{$record->weight}}"
-                                            id="city">
+                                        <input class="form-control" autocomplete="off" name="weight" type="text"
+                                            value="{{ $record->weight }}" id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
-                                        <label for="city">Kariya/CRM:</label>
-                                        <input class="form-control" autocomplete="off" name="kariya" type="text" value="{{$record->kariya}}"
-                                            id="city">
+                                        <label for="city">Kariya:</label>
+                                        <input class="form-control" autocomplete="off" name="kariya" type="text"
+                                            value="{{ $record->kariya }}" id="city">
+                                    </div>
+                                    <div class="col-sm-4 mb-2">
+                                        <label for="city">CRM:</label>
+                                        <input class="form-control" autocomplete="off" name="crm" type="text"
+                                            value="{{ $record->crm }}" id="city">
                                     </div>
 
                                 </div>
@@ -160,71 +166,81 @@
                         @include('backend.layouts.partials.messages')
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                @if($self_expense)
-                                    <form class="table-responsive" action="{{ route('admin.order.updatekselfexpense', ['id' => $self_expense->id]) }}" method="POST" enctype="multipart/form-data">
+                                @if ($self_expense)
+                                    <form class="table-responsive"
+                                        action="{{ route('admin.order.updatekselfexpense', ['id' => $self_expense->id]) }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                            <div class="row mt-2 collapse show"  >
+                                        <div class="row mt-2 collapse show">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                        <option value="{{$self_expense->musalsal_num}}">{{$record->musalsal_num}}</option>
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
+                                                        <option value="{{ $self_expense->musalsal_num }}">
+                                                            {{ $record->musalsal_num }}</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                            <option value="{{ $admin->id }}">
+                                                                {{ $admin->musalsal_num }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="custom">Comission:</label>
                                                     <input
                                                         class="form-control
                                                     self_pk_calculation"
-                                                        id="self_pk_custom" autocomplete="off" name="comission" value="{{$self_expense->comission}}"
-                                                        type="text">
+                                                        id="self_pk_custom" autocomplete="off" name="comission"
+                                                        value="{{ $self_expense->comission }}" type="text">
                                                 </div>
-                                                
-                                            
+
+
                                             </div>
-                                            
+
                                             <div class="col-sm-6">
 
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="product_owner_id">Name:</label>
                                                     <select class="form-control  nice-select  form-select" name="name"
                                                         id="product_owner_id">
-                                                        <option value="{{$self_expense->name}}">{{$self_expense->admin->name}}</option>
+                                                        <option value="{{ $self_expense->name }}">
+                                                            {{ $self_expense->admin->name }}</option>
                                                         @foreach ($admins as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                            <option value="{{ $admin->id }}">{{ $admin->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
                                             </div>
-                                                
+
 
                                         </div>
                                         <button type="submit" class="btn btn-rounded btn-primary">Save</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.order.kselfexpense') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.order.kselfexpense') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        
-                                            <div class="row mt-2 collapse show"  >
+
+                                        <div class="row mt-2 collapse show">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                    <option value="">Select</option>
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
+                                                        <option value="">Select</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                            <option value="{{ $admin->id }}">
+                                                                {{ $admin->musalsal_num }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="custom">Comission:</label>
                                                     <input
@@ -233,10 +249,10 @@
                                                         id="self_pk_custom" autocomplete="off" name="comission"
                                                         type="text">
                                                 </div>
-                                                
-                                            
+
+
                                             </div>
-                                            
+
                                             <div class="col-sm-6">
 
                                                 <div class="col-sm-12 mb-2">
@@ -245,13 +261,14 @@
                                                         id="product_owner_id">
                                                         <option value="">Select</option>
                                                         @foreach ($admins as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                            <option value="{{ $admin->id }}">{{ $admin->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
                                             </div>
-                                                
+
 
                                         </div>
                                         <button type="submit" class="btn btn-rounded btn-primary">Save</button>
@@ -261,18 +278,20 @@
                         </div>
                     </div>
                 </div>
-            </div>  
-            
-             {{-- new form  --}}
-             <div class="col-12">
+            </div>
+
+            {{-- new form  --}}
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
 
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                @if($roznamcha)
-                                    <form class="table-responsive" action="{{ route('admin.order.updateroznamchask', ['id' => $roznamcha->id]) }}" method="POST" enctype="multipart/form-data">
+                                @if ($roznamcha)
+                                    <form class="table-responsive"
+                                        action="{{ route('admin.order.updateroznamchask', ['id' => $roznamcha->id]) }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
@@ -280,11 +299,13 @@
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num"
-                                                        id="product_owner_id">
-                                                        <option value="{{$roznamcha->serial_num}}">{{$roznamcha->serial_num}}</option>
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
+                                                        <option value="{{ $roznamcha->serial_num }}">
+                                                            {{ $roznamcha->serial_num }}</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->musalsal_num }}">{{ $admin->musalsal_num }}
+                                                            <option value="{{ $admin->musalsal_num }}">
+                                                                {{ $admin->musalsal_num }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -292,17 +313,19 @@
 
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="serial_no"> Date:</label>
-                                                    <input class="form-control" autocomplete="off" name="date_af" type="date" value="{{$roznamcha->date_af}}"
-                                                        id="serial_no">
+                                                    <input class="form-control" autocomplete="off" name="date_af"
+                                                        type="date" value="{{ $roznamcha->date_af }}" id="serial_no">
                                                 </div>
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="serial_no"> Amount Af:</label>
-                                                    <input class="form-control" autocomplete="off" name="amount_af" type="amount_af" value="{{$roznamcha->amount_af}}"
+                                                    <input class="form-control" autocomplete="off" name="amount_af"
+                                                        type="amount_af" value="{{ $roznamcha->amount_af }}"
                                                         id="serial_no">
                                                 </div>
 
                                                 <input type="text" name="country" value="Afghanistan" hidden>
-                                                <input type="text" name="state" id="" value="بنام" hidden>
+                                                <input type="text" name="state" id="" value="بنام"
+                                                    hidden>
 
 
                                             </div>
@@ -313,9 +336,11 @@
                                                     <label for="product_owner_id">Name1:</label>
                                                     <select class="form-control  nice-select  form-select" name="name"
                                                         id="product_owner_id">
-                                                        <option value="{{$roznamcha->khata_banam}}">{{$roznamcha->admin->name}}</option>
+                                                        <option value="{{ $roznamcha->khata_banam }}">
+                                                            {{ $roznamcha->admin->name }}</option>
                                                         @foreach ($admins as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->name }}</option>
+                                                            <option value="{{ $admin->id }}">{{ $admin->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -323,9 +348,10 @@
                                                 <div class="col-sm-12">
                                                     <div class="col-sm-12 mb-2">
                                                         <label for="custom">Details:</label>
-                                                        <input class="form-control" id="af_self_total" autocomplete="off" value="{{$roznamcha->detail}}"
-                                                            name="detail" type="text">
-                                                    </div>    
+                                                        <input class="form-control" id="af_self_total" autocomplete="off"
+                                                            value="{{ $roznamcha->detail }}" name="detail"
+                                                            type="text">
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -335,18 +361,20 @@
                                         <button type="submit" class="btn btn-rounded btn-primary">Save</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.order.roznamchask') }}"method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.order.roznamchask') }}"method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row mt-2 collapse show">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num"
-                                                        id="product_owner_id">
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
                                                         <option value="">Select</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->musalsal_num }}">{{ $admin->musalsal_num }}
+                                                            <option value="{{ $admin->musalsal_num }}">
+                                                                {{ $admin->musalsal_num }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -354,21 +382,21 @@
 
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="serial_no"> Amount Af:</label>
-                                                    <input class="form-control" autocomplete="off" name="amount_af" type="amount_af"
-                                                        id="serial_no">
+                                                    <input class="form-control" autocomplete="off" name="amount_af"
+                                                        type="amount_af" id="serial_no">
                                                 </div>
 
                                             </div>
 
                                             <div class="col-sm-6">
-                                                
+
 
                                                 <div class="col-sm-12">
                                                     <div class="col-sm-12 mb-2">
                                                         <label for="custom">Details:</label>
                                                         <input class="form-control" id="af_self_total" autocomplete="off"
                                                             name="detail" type="text">
-                                                    </div>    
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -391,21 +419,26 @@
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layouts.partials.messages')
-                
+
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                @if($self)
-                                    <form class="table-responsive" action="{{ route('admin.order.updatekself', ['id' => $self->id]) }}" method="POST" enctype="multipart/form-data">
+                                @if ($self)
+                                    <form class="table-responsive"
+                                        action="{{ route('admin.order.updatekself', ['id' => $self->id]) }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
                                         <div class="row mt-2 collapse show" id="af_form" style="">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                    <option value="{{$self->musalsal_num}}">{{$record->musalsal_num}}</option>
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
+                                                        <option value="{{ $self->musalsal_num }}">
+                                                            {{ $record->musalsal_num }}</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                            <option value="{{ $admin->id }}">
+                                                                {{ $admin->musalsal_num }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -413,30 +446,35 @@
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="custom">US Malwala:</label>
-                                                    <input class="form-control" id="af_self_total" autocomplete="off" value="{{$self->us_malwala}}"
-                                                        name="us_malwala" type="text">
-                                                </div>    
+                                                    <input class="form-control" id="af_self_total" autocomplete="off"
+                                                        value="{{ $self->us_malwala }}" name="us_malwala"
+                                                        type="text">
+                                                </div>
                                             </div>
                                             <div class="col-sm-6 mb-2">
                                                 <label for="Total"> Exchange Rate:</label>
-                                                <input class="form-control" id="af_self_total" autocomplete="off" value="{{$self->exchange_rate}}"
-                                                    name="exchange_rate" type="text">
-                                            </div>  
+                                                <input class="form-control" id="af_self_total" autocomplete="off"
+                                                    value="{{ $self->exchange_rate }}" name="exchange_rate"
+                                                    type="text">
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-rounded btn-primary">Save</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.order.kself') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.order.kself') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        
+
                                         <div class="row mt-2 collapse show" id="af_form" style="">
                                             <div class="col-sm-6">
                                                 <div class="col-sm-12 mb-2">
                                                     <label for="self_order_id">مسلسل نمبر:</label>
-                                                    <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                    <option value="">Select</option>
+                                                    <select class="form-control  nice-select  form-select"
+                                                        name="musalsal_num" id="product_owner_id">
+                                                        <option value="">Select</option>
                                                         @foreach ($kharlachi as $admin)
-                                                            <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                            <option value="{{ $admin->id }}">
+                                                                {{ $admin->musalsal_num }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -446,12 +484,17 @@
                                                     <label for="custom">US Malwala:</label>
                                                     <input class="form-control" id="af_self_total" autocomplete="off"
                                                         name="us_malwala" type="text">
-                                                </div>    
+                                                </div>
                                             </div>
                                             <div class="col-sm-6 mb-2">
                                                 <label for="Total"> Exchange Rate:</label>
                                                 <input class="form-control" id="af_self_total" autocomplete="off"
                                                     name="exchange_rate" type="text">
+                                            </div>
+                                            <div class="col-sm-6 mb-2">
+                                                <label for="Total"> Amount af:</label>
+                                                <input class="form-control" id="af_self_total" autocomplete="off"
+                                                    name="amount_af" type="text">
                                             </div>
 
                                         </div>
