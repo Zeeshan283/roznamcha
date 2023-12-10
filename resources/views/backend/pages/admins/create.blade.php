@@ -49,13 +49,13 @@ Add User - Roznamcha
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
                             </div>
-                            <div class="form-group col-md-5 col-sm-12">
+                            {{-- <div class="form-group col-md-5 col-sm-12">
                                 <label for="email">User Email</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
-                            </div>
+                            </div> --}}
                         </div>
 
-                        <div class="form-row mb-3" style="display: flex; flex-wrap:wrap; justify-content: space-between">
+                        {{-- <div class="form-row mb-3" style="display: flex; flex-wrap:wrap; justify-content: space-between">
                             <div class="form-group col-md-5 col-sm-12">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
@@ -64,7 +64,7 @@ Add User - Roznamcha
                                 <label for="password_confirmation">Confirm Password</label>
                                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-row mb-3" style="display: flex; flex-wrap:wrap; justify-content: space-between">
                             <div class="form-group col-md-5 col-sm-6">

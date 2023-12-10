@@ -68,21 +68,17 @@ class AdminsController extends Controller
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
-            'email' => 'required|max:100|email|unique:admins',
             'phone' => 'required|max:100',
             'currency' => 'required|max:100',
             'username' => 'required|max:100|unique:admins',
-            'password' => 'required|min:6|confirmed',
         ]);
 
         // Create New Admin
         $admin = new Admin();
         $admin->name = $request->name;
         $admin->username = $request->username;
-        $admin->email = $request->email;
         $admin->phone = $request->phone;
         $admin->currency = $request->currency;
-        $admin->password = Hash::make($request->password);
         $admin->save();
 
         if ($request->roles) {
@@ -140,21 +136,16 @@ class AdminsController extends Controller
         // Validation Data
         $request->validate([
             'name' => 'required|max:50',
-            'email' => 'required|max:100|email|unique:admins,email,' . $id,
             'phone' => 'required|max:100',
-            'password' => 'nullable|min:6|confirmed',
         ]);
 
 
-        $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
         $admin->currency = $request->currency;
 
         $admin->username = $request->username;
-        if ($request->password) {
-            $admin->password = Hash::make($request->password);
-        }
+    
         $admin->save();
 
         $admin->roles()->detach();

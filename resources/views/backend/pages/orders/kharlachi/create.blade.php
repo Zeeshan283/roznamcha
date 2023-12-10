@@ -138,10 +138,11 @@
                                             id="city">
                                     </div>
                                     <div class="col-sm-4 mb-2">
-                                        <label for="city">CRM:</label>
+                                        <label for="city">Karaya:</label>
                                         <input class="form-control" autocomplete="off" name="kariya" type="text"
                                             id="city">
-                                    </div><div class="col-sm-4 mb-2">
+                                    </div>
+                                    <div class="col-sm-4 mb-2">
                                         <label for="city">CRM:</label>
                                         <input class="form-control" autocomplete="off" name="crm" type="text"
                                             id="city">

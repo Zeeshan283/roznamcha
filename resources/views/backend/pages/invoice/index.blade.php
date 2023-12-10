@@ -81,14 +81,23 @@
             white-space: nowrap;
         }
         .custom-flag-size {
-            width: 70px;
+            width: 45px;
             height: auto;        }
+
         .line {
         border-bottom: 2px solid #333; /* Adjust color and size as needed */
-        width: 50%; /* Adjust the width of the line */
+        width: 100%; /* Adjust the width of the line */
         position: absolute;
         bottom: 0;
         margin: 0 auto;
+        
+        }
+
+        .row_height{
+            height: 180px;
+        }
+        .info-padd{
+            padding: 0 0 0 46px;
         }
         p {
             font-family: 'Noto Nastaliq Urdu', serif;
@@ -99,10 +108,22 @@
         td{
             font-family: 'Noto Nastaliq Urdu', serif;
         }
+
+        .text-on-line {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 0 5px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 12px;
+            text-align: center
+        }
         @media (max-width: 1200px) {
         .custom-flag-size {
-            width: 100%;
-            height: 100%;        }
+            width: 40px;
+            height: auto%;        }
 
         .line {
             width: 100%; 
@@ -120,12 +141,13 @@
             padding: 0 5px;
             font-family: 'Noto Nastaliq Urdu', serif;
             font-size: 12px;
+            text-align: center
         }
     }
     @media (max-width: 991px) {
         .custom-flag-size {
-            width: auto;
-            height: 40px;
+            width: 40px;
+            height: auto;
         }
         .row_height{
             height: 130px;
@@ -142,6 +164,20 @@
         .box_font{
             font-size: 12px;
         }
+        .text-on-line {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 0 5px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 12px;
+            text-align: center
+        }
+        .info-padd{
+            padding: 0 0 0 20px;
+        }
         
     }
         @media (max-width: 768px) {
@@ -154,6 +190,18 @@
             width: 80%; 
             width: 148px;
         }
+        .text-on-line {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 0 5px;
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 12px;
+            text-align: center
+        }
+       
     }
 
             
@@ -188,27 +236,28 @@
                         <!-- Upper row with heading -->
                         <div class="row border-bottom pb-3 mb-3">
                             <div class="col">
-                                <h4 style="text-align: right; color: red ; font-family: 'Noto Nastaliq Urdu', serif;">شرکت ترانزیتی و بار چالانی شفیع الله خوستوال</h4>
-                                <h6 class="text-left" style="text-align: right; color: red ; font-family: 'Noto Nastaliq Urdu', serif;">Shafiullah Khostwal Transit & Forwarding Company</h6>
+                                <h4  style="text-align: right; color: red ; font-family: 'Noto Nastaliq Urdu', serif;font-size: xx-large;">شرکت ترانزیتی و بار چالانی شفیع الله خوستوال</h4>
+                                <h6 class="text-left pt-3" style="text-align: right; color: red ; font-family: 'Noto Nastaliq Urdu', serif;font-size: larger;">Shafiullah Khostwal Transit & Forwarding Company</h6>
                             </div>
                         </div>
                         <!-- Lower row divided into 4 columns -->
                         <div class="row">
-                            <div class="col-md-3 border-right">
+                            <div class="col-md-3 border-right info-padd">
                                 <p class="text-left" style="font-size: 10px"><strong>محب الله</strong>  0780000475</p>
                                 <p style="font-size: 10px"><strong></strong>  0792498000</p>
-                                <p class="text-left" style="font-size: 10px"><strong>انور الله</strong>  0780000475</p>
+                                <p class="text-left" style="font-size: 10px"><strong>انور الله</strong>  0700282899</p>
                             </div>
-                            <div class="col-md-3 border-right">
+                            <div class="col-md-3 border-right info-padd">
                                 <p class="text-left" style="font-size: 10px"><strong>نصر الله</strong> 0704908767</p>
                                 <p style="font-size: 10px"><strong></strong>  0780967296</p>
                                 <p class="text-left" style="font-size: 10px"><strong>وطن يار </strong> 0793837383</p>
                             </div>
-                            <div class="col-md-3 border-right">
-                                <p class="text-left" style="font-size: 10px"><strong>واحد الله</strong> 700282899</p>
+                            <div class="col-md-3 border-right info-padd">
+                                <p class="text-left" style="font-size: 10px"><strong>واحد الله</strong> 7002828990</p>
                                 <p  style="font-size: 10px"><strong></strong>  0771500060</p>
-                                <p class="text-left" style="font-size: 10px"><strong>عابد الله </strong> 0702969916</p>                            </div>
-                            <div class="col-md-3">
+                                <p class="text-left" style="font-size: 10px"><strong>عابد الله </strong> 0702969916</p>                            
+                            </div>
+                            <div class="col-md-3 info-padd">
                                 <p style="font-size: 10px"><strong > شفیع الله</strong> <span class="text-center">03330282899</span> </p>
                                 <p style="font-size: 10px"><strong></strong>  03320282899</p>
                                 <p style="font-size: 10px"><strong>  </strong> 0912552309</p> 
@@ -283,13 +332,13 @@
                         <div class="col-md-4">
                             <div class="underline">
                                 <hr><span class="text-on-line">{{$inv->p_of_d}}</span>
-                                <p class="label">مخیل تخلیه</p>
+                                <p class="label">محل تخلیہ</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="underline">
                                 <hr><span class="text-on-line">{{$inv->loading_place}}</span>
-                                <p class="label">مخل بارګیری</p>
+                                <p class="label">محل بارگیری</p>
                             </div>
                         </div>
                 </div>
@@ -298,13 +347,13 @@
                     <div class="col-md-3">
                         <!-- Creating 4 boxes with rounded corners -->
                         <div class="rounded-box" style="background: linear-gradient(to right, #d8df8e, #e7ece7, #d8df8e);">
-                            <p class="pt-3 box_font" ><strong>نماینده تورخم بندر <br> </strong> 0779863063</p>
+                            <p class="pt-3 box_font" ><strong>نمایندہ۔طورخم بندر<br> </strong> 0766412049</p>
                         </div>
                         <div class="rounded-box" style="background: linear-gradient(to right, #7fd4db, #e7ece7, #7fd4db);">
-                            <p class="pt-3 box_font" ><strong>نماینده غلام خان بندر<br> </strong> 0790169528</p>
+                            <p class="pt-3 box_font" ><strong>نمایندہ غلام خان<br> </strong> 0767018790</p>
                         </div>
                         <div class="rounded-box" style="background: linear-gradient(to right, #ebcc9b, #e7ece7, #ebcc9b);">
-                            <p class="pt-3 box_font" ><strong>نماینده شیر خان بندر<br></strong> 0776855819</p>
+                            <p class="pt-3 box_font" ><strong>نمایندہ شیر خان بندر<br></strong> 0799636677</p>
                         </div>
                         <div class="rounded-box" style="background: linear-gradient(to right, #af88cd, #e7ece7, #af88cd);">
                             <p class="pt-3 box_font" ><strong>نماینده اقینه بندر<br> </strong> 0779784938</p>
@@ -317,7 +366,7 @@
                                 <tr>
                                     <th style="width: 16.66%;">کرایه مجموعی</th>
                                     <th style="width: 16.66%;">كرايه في تن</th>
-                                    <th style="width: 16.66%;">و وزن خالص و بارجامه</th>
+                                    <th style="width: 16.66%;">و وزن خالص و بارنامہ</th>
                                     <th style="width: 16.66%;">نمبر پلیت موتر ازبکستان</th>
                                     <th style="width: 14%;">تفصیلات</th>
                                     <th style="width: 11%;">شماره</th>
@@ -345,13 +394,13 @@
                             </div>
                             <div class="col-md-8 text-center" >
 
-                                <img src="/upload/flags/az.svg"  alt="Azerbaijan Flag" class="custom-flag-size">
-                                <img src="/upload/flags/us.svg"  alt="United States Flag" class="custom-flag-size">
-                                <img src="/upload/flags/kz.svg"  alt="Kazakhstan Flag" class="custom-flag-size">
-                                <img src="/upload/flags/tj.svg"  alt="Tajikistan Flag" class="custom-flag-size">
-                                <img src="/upload/flags/kg.svg"  alt="Kyrgyzstan Flag" class="custom-flag-size">
-                                <img src="/upload/flags/af.svg"  alt="Afghanistan Flag" class="custom-flag-size">
-                                <img src="/upload/flags/pk.svg"  alt="Pakistan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/az.png"  alt="Azerbaijan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/us.png"  alt="United States Flag" class="custom-flag-size">
+                                <img src="/upload/flags/kz.png"  alt="Kazakhstan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/tj.png"  alt="Tajikistan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/kg.png"  alt="Kyrgyzstan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/af.png"  alt="Afghanistan Flag" class="custom-flag-size">
+                                <img src="/upload/flags/pk.png"  alt="Pakistan Flag" class="custom-flag-size">
 
                               
                             </div>
