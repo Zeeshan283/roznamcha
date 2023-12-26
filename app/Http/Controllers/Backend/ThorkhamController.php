@@ -88,48 +88,11 @@ class ThorkhamController extends Controller
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
         $record->date = $request->input('date');
-        $record->save();
-
-        $savedId = $record->id;
-
-        $validatedData = $request->validate([
-            'comission' => 'required|string',
-            'name' => 'required|string',
-        ]);
+        $record->save();      
         
-        $record = new SelfDeliveryExpenseThorkhams();
-        $record->musalsal_num = $savedId;
-        $record->comission = $request->input('comission');
-        $record->name = $request->input('name');
-        $record->save();
-
-
-        $validatedData = $request->validate([
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
-        ]);
-        
-        $thorkham_order = ThorkhamOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-        
-        $name1 = $thorkham_order->name1;
-        $date_af = $thorkham_order->date;
-
-        $record = new Roznamchas();
-        $record->serial_num = $savedId;
-        $record->date_af = $date_af;
-        $record->amount_af = $request->input('amount_af');
-        $record->state = $request->input('state');
-        $record->khata_banam = $name1;
-        $record->country = $request->input('country');
-        $record->detail = $request->input('detail');
-        $record->save();
-
-
+       
         session()->flash('success', 'Record Created successfully');
         return redirect()->back();
-
 
     }
     // public function store1(Request $request)
@@ -182,12 +145,32 @@ class ThorkhamController extends Controller
             'musalsal_num' => 'required|string',
             'comission' => 'required|string',
             'name' => 'required|string',
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
         ]);
         
         $record = new SelfDeliveryExpenseThorkhams();
         $record->musalsal_num = $request->input('musalsal_num');
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
+        $record->save();
+
+
+        $thorkham_order = ThorkhamOrders::where('id','=',$request->input('musalsal_num'))->first();
+        
+        $name1 = $thorkham_order->name1;
+        $date_af = $thorkham_order->date;
+
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
         $record->save();
 
         
@@ -349,7 +332,7 @@ class ThorkhamController extends Controller
             'detail' => 'required|string',
         ]);
         
-        $thorkham_order = ThorkhamOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $thorkham_order = ThorkhamOrders::where('id','=',$request->input('musalsal_num'))->first();
         
         $name1 = $thorkham_order->name1;
         $date_af = $thorkham_order->date;

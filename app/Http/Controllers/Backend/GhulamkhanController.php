@@ -89,42 +89,6 @@ class GhulamkhanController extends Controller
         $record->date = $request->input('date');
         $record->save();
 
-        $savedId = $record->id;
-
-        $validatedData = $request->validate([
-            'comission' => 'required|string',
-            'name' => 'required|string',
-        ]);
-        
-        $record = new SelfDeliveryExpenseGhulamkhan();
-        $record->musalsal_num = $savedId;
-        $record->comission = $request->input('comission');
-        $record->name = $request->input('name');
-        $record->save();
-
-
-        $validatedData = $request->validate([
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
-        ]);
-        
-        $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-        
-        $name1 = $ghulamkhan_order->name1;
-        $date_af = $ghulamkhan_order->date;
-
-        $record = new Roznamchas();
-        $record->serial_num = $savedId;
-        $record->date_af = $date_af;
-        $record->amount_af = $request->input('amount_af');
-        $record->state = $request->input('state');
-        $record->khata_banam = $name1;
-        $record->country = $request->input('country');
-        $record->detail = $request->input('detail');
-        $record->save();
-
 
         session()->flash('success', 'Record Created successfully');
         return redirect()->back();
@@ -175,25 +139,47 @@ class GhulamkhanController extends Controller
 
     // }
 
-    // public function gselfexpense(Request $request)
-    // {
-    //     // dd($request->all());
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'comission' => 'required|string',
-    //         'name' => 'required|string',
-    //     ]);
-        
-    //     $record = new SelfDeliveryExpenseGhulamkhan();
-    //     $record->musalsal_num = $request->input('musalsal_num');
-    //     $record->comission = $request->input('comission');
-    //     $record->name = $request->input('name');
-    //     $record->save();
+    public function gselfexpense(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
+        $record = new SelfDeliveryExpenseGhulamkhan();
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->save();
 
+        $validatedData = $request->validate([
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
         
-    //     session()->flash('success', 'Record created successfully');
-    //     return redirect()->back();
-    // }
+        $ghulamkhan_order = GhulamkhanOrders::where('id','=',$request->input('musalsal_num'))->first();
+        $name1 = $ghulamkhan_order->name1;
+        $date_af = $ghulamkhan_order->date;
+
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');;
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
+
+
+        session()->flash('success', 'Record Created successfully');
+        return redirect()->back();
+        
+
+    }
     public function gself(Request $request)
         {
             // dd($request->all());
@@ -358,7 +344,7 @@ class GhulamkhanController extends Controller
             'detail' => 'required|string',
         ]);
         
-        $ghulamkhan_order = GhulamkhanOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $ghulamkhan_order = GhulamkhanOrders::where('id','=',$request->input('musalsal_num'))->first();
         
         $name1 = $ghulamkhan_order->name1;
         $date_af = $ghulamkhan_order->date;

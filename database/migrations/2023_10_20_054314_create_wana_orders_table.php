@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->text('weight');
             $table->text('kariya');
+            $table->text('crm');
             $table->timestamps();
         });
     }

@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('order/kharlachi/selfexpense/{id}','Backend\KharlachiController@updatekselfexpense')->name('admin.order.updatekselfexpense');
     Route::put('order/kharlachi/self/{id}','Backend\KharlachiController@updatekself')->name('admin.order.updatekself');
     Route::post('order/kharlachi/self','Backend\KharlachiController@kself')->name('admin.order.kself');
+    // Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@roznamchask')->name('admin.order.roznamchask');
     Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@roznamchask')->name('admin.order.roznamchask');
     Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@updateroznamchask')->name('admin.order.updateroznamchask');
     Route::get('orders/kharlachi/{id}/destroy','Backend\KharlachiController@destroy')->name('admin.orders.kharlachi.destroy1');

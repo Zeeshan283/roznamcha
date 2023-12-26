@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('self_delivery_thorkhams', function (Blueprint $table) {
-            $table->increments('id'); 
+            $table->increments('id');
             $table->integer('musalsal_num')->unsigned();
-            $table->foreign('musalsal_num')->references('id')->on('thorkham_orders'); 
+            $table->foreign('musalsal_num')->references('id')->on('thorkham_orders')->onDelete('cascade');
             $table->string('us_malwala');
             $table->string('exchange_rate');
             $table->timestamps();

@@ -361,8 +361,7 @@
                                         <button type="submit" class="btn btn-rounded btn-primary">Save</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.order.roznamchask') }}"method="POST"
-                                        enctype="multipart/form-data">
+                                    <form action="{{ route('admin.order.roznamchask') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row mt-2 collapse show">

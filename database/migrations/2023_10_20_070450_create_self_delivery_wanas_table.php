@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('self_delivery_wanas', function (Blueprint $table) {
-            $table->increments('id'); 
+            $table->increments('id');
             $table->integer('musalsal_num')->unsigned();
-            $table->foreign('musalsal_num')->references('id')->on('wana_orders'); 
+            $table->foreign('musalsal_num')->references('id')->on('wana_orders')->onDelete('cascade');
             $table->string('us_malwala');
             $table->string('exchange_rate');
             $table->timestamps();

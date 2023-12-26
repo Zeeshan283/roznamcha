@@ -33,32 +33,32 @@ class PersonalController extends Controller
         if (is_null($this->user) || !$this->user->can('khata.view')) {
             abort(403, 'Sorry !! You are Unauthorized to view personal khata !');
         }
-        
+
         $admin = Admin::findOrFail($id);
-        
-        $roznamchas = Roznamchas::where('khata_banam','=',$id)->with('admin')->get();
+        // dd($user->id);
+
+        $roznamchas = Roznamchas::where('khata_banam', '=', $admin->id)->with('admin')->get();
         $amount_recv = 0;
         $amount_paid = 0;
-        if($admin->currency == "PK"){
-            foreach ($roznamchas as $entry) {
+
+        foreach ($roznamchas as $entry) {
+            if ($entry->amount_pk != null) {
                 if ($entry->state == 'جمع') {
                     $amount_paid += $entry->amount_pk;
                 } elseif ($entry->state == 'بنام') {
                     $amount_recv += $entry->amount_pk;
                 }
             }
-        }
-        if($admin->currency == "AF"){
-            foreach ($roznamchas as $entry) {
+
+            if ($entry->amount_af != null) {
                 if ($entry->state == 'جمع') {
                     $amount_paid += $entry->amount_af;
                 } elseif ($entry->state == 'بنام') {
                     $amount_recv += $entry->amount_af;
                 }
             }
-        }
-        if($admin->currency == "USD"){
-            foreach ($roznamchas as $entry) {
+
+            if ($entry->amount_usa != null) {
                 if ($entry->state == 'جمع') {
                     $amount_paid += $entry->amount_usa;
                 } elseif ($entry->state == 'بنام') {
@@ -66,12 +66,6 @@ class PersonalController extends Controller
                 }
             }
         }
-
-        // $ghulamkhan = GhulamkhanOrders::where('malwala','=',$id)->with('admin')->get();
-        // $kharlachi = KharlachiOrders::where('malwala','=',$id)->with('admin')->get();
-        // $thorkham = ThorkhamOrders::where('malwala','=',$id)->with('admin')->get();
-        // $wana = WanaOrders::where('malwala','=',$id)->with('admin')->get();
-    
 
         return view('backend.pages.khatas.personal', compact('admin', 'amount_recv', 'amount_paid'));
     }

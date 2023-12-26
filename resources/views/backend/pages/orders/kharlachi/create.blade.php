@@ -10,7 +10,7 @@
     <style>
         .form-check-label {
             text-transform: capitalize;
-        }   
+        }
     </style>
 @endsection
 
@@ -41,7 +41,8 @@
                         <h4 class="header-title">Create Order Kharlachi</h4>
                         @include('backend.layouts.partials.messages')
 
-                        <form action="{{ route('admin.orders.kharlachi.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.orders.kharlachi.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="hidden" name="location_id" id="loc_id" value="2" required="">
@@ -76,8 +77,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">BULIT NO:</label>
                                         <input class="form-control" autocomplete="off" name="bulit_no" type="text"
@@ -109,19 +110,19 @@
                                         <input class="form-control" autocomplete="off" name="port" type="text"
                                             id="city">
                                     </div>
-                                    
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Place of Dischange:</label>
                                         <input class="form-control" autocomplete="off" name="p_of_d" type="text"
                                             id="city">
-                                    </div> 
-                                    
+                                    </div>
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Number Plate UZB:</label>
                                         <input class="form-control" autocomplete="off" name="n_plate_usd" type="text"
                                             id="city">
                                     </div>
-                                    
+
                                     <div class="col-sm-4 mb-2">
                                         <label for="city">Product:</label>
                                         <input class="form-control" autocomplete="off" name="product" type="text"
@@ -150,15 +151,15 @@
 
                                 </div>
                             </div>
-                            {{-- <button type="submit" class="btn btn-rounded btn-primary">Save</button> --}}
-                        {{-- </form> --}}
+                            <button type="submit" class="btn btn-rounded btn-primary">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <!-- data table end -->
 
             <!-- data table start -->
-    
+
 
 
             <div class="col-12">
@@ -167,22 +168,25 @@
                         <h4 class="header-title">Commission</h4>
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                {{-- <form action="{{ route('admin.order.kselfexpense') }}" method="POST" enctype="multipart/form-data"> --}}
-                                    {{-- @csrf --}}
-                                    
-                                        <div class="row mt-2 collapse show"  >
+                                <form action="{{ route('admin.order.kselfexpense') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="row mt-2 collapse show">
                                         <div class="col-sm-6">
-                                            {{-- <div class="col-sm-12 mb-2">
+                                            <div class="col-sm-12 mb-2">
                                                 <label for="self_order_id">مسلسل نمبر:</label>
-                                                <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                <option value="">Select</option>
+                                                <select class="form-control  nice-select  form-select" name="musalsal_num"
+                                                    id="product_owner_id">
+                                                    <option value="">Select</option>
                                                     @foreach ($kharlachi as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
-                                            </div> --}}
-                                            
-                                            
+                                            </div>
+
+
                                             <div class="col-sm-12 mb-2">
                                                 <label for="custom">Comission:</label>
                                                 <input
@@ -191,10 +195,10 @@
                                                     id="self_pk_custom" autocomplete="off" name="comission"
                                                     type="text">
                                             </div>
-                                            
-                                           
+
+
                                         </div>
-                                        
+
                                         <div class="col-sm-6">
 
                                             <div class="col-sm-12 mb-2">
@@ -209,18 +213,18 @@
                                             </div>
 
                                         </div>
-                                            
+
 
                                     </div>
                                     {{-- <button type="submit" class="btn btn-rounded btn-primary">Save</button> --}}
-                                {{-- </form> --}}
+                                    {{-- </form> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>  
-            
-             {{-- new form  --}}
+            </div>
+
+            {{-- new form  --}}
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -228,11 +232,11 @@
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
                                 {{-- <form action="{{ route('admin.order.roznamchask') }}" method="POST" enctype="multipart/form-data"> --}}
-                                    {{-- @csrf --}}
+                                {{-- @csrf --}}
 
-                                    <div class="row mt-2 collapse show">
-                                        <div class="col-sm-6">
-                                            {{-- <div class="col-sm-12 mb-2">
+                                <div class="row mt-2 collapse show">
+                                    <div class="col-sm-6">
+                                        {{-- <div class="col-sm-12 mb-2">
                                                 <label for="self_order_id">مسلسل نمبر:</label>
                                                 <select class="form-control  nice-select  form-select" name="musalsal_num"
                                                     id="product_owner_id">
@@ -244,33 +248,38 @@
                                                 </select>
                                             </div> --}}
 
-                                            <div class="col-sm-12 mb-2">
-                                                <label for="serial_no"> Amount Af:</label>
-                                                <input class="form-control" autocomplete="off" name="amount_af" type="amount_af"
-                                                    id="serial_no">
-                                            </div>
-
+                                        <div class="col-sm-12 mb-2">
+                                            <label for="serial_no"> Amount Af:</label>
+                                            <input class="form-control" autocomplete="off" name="amount_af"
+                                                type="amount_af" id="serial_no">
                                         </div>
-
-                                        <div class="col-sm-6">
-                                            
-
-                                            <div class="col-sm-12">
-                                                <div class="col-sm-12 mb-2">
-                                                    <label for="custom">Details:</label>
-                                                    <input class="form-control" id="af_self_total" autocomplete="off"
-                                                        name="detail" type="text">
-                                                </div>    
-                                            </div>
-
+                                        <div class="col-sm-12 mb-2">
+                                            <label for="serial_no">Images:</label>
+                                            <input class="form-control" autocomplete="off" name="img" type="file"
+                                                multiple id="serial_no">
                                         </div>
-
-                                        <input type="text" name="state" id="" value="بنام" hidden>
-                                        <input type="text" name="country" value="Afghanistan" hidden>
-
 
                                     </div>
-                                    <button type="submit" class="btn btn-rounded btn-primary">Save</button>
+
+                                    <div class="col-sm-6">
+
+
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12 mb-2">
+                                                <label for="custom">Details:</label>
+                                                <input class="form-control" id="af_self_total" autocomplete="off"
+                                                    name="detail" type="text">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <input type="text" name="state" id="" value="بنام" hidden>
+                                    <input type="text" name="country" value="Afghanistan" hidden>
+
+
+                                </div>
+                                <button type="submit" class="btn btn-rounded btn-primary">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -284,17 +293,20 @@
                         <h4 class="header-title">Malwala</h4>
                         <div class="tab-content">
                             <div class="tab-pane show active" id="self">
-                                <form action="{{ route('admin.order.kself') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('admin.order.kself') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
-                                    
+
                                     <div class="row mt-2 collapse show" id="af_form" style="">
                                         <div class="col-sm-6">
                                             <div class="col-sm-12 mb-2">
                                                 <label for="self_order_id">مسلسل نمبر:</label>
-                                                <select class="form-control  nice-select  form-select" name="musalsal_num" id="product_owner_id">
-                                                <option value="">Select</option>
+                                                <select class="form-control  nice-select  form-select" name="musalsal_num"
+                                                    id="product_owner_id">
+                                                    <option value="">Select</option>
                                                     @foreach ($kharlachi as $admin)
-                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}</option>
+                                                        <option value="{{ $admin->id }}">{{ $admin->musalsal_num }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -304,7 +316,7 @@
                                                 <label for="custom">US Malwala:</label>
                                                 <input class="form-control" id="af_self_total" autocomplete="off"
                                                     name="us_malwala" type="text">
-                                            </div>    
+                                            </div>
                                         </div>
                                         <div class="col-sm-6 mb-2">
                                             <label for="Total"> Exchange Rate:</label>

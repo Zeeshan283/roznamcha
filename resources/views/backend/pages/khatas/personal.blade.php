@@ -77,8 +77,8 @@
                             <div class="col-sm-6">
                                 <h4>Personal Khata</h4>
                                 <h6>Phone</h6>
-                                <h6>{{ $admin->currency }} Received</h6>
-                                <h6>{{ $admin->currency }} Paid</h6>
+                                <h6>{{ $admin->country  }} Received</h6>
+                                <h6>{{ $admin->country }} Paid</h6>
                             </div>
                             <div class="col-sm-6">
                                 <h4>{{ $admin->name }}</h4>

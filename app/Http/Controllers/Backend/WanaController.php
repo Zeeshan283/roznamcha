@@ -103,28 +103,7 @@ class WanaController extends Controller
         $record->name = $request->input('name');
         $record->save();
 
-        $validatedData = $request->validate([
-            'musalsal_num' => 'required|string',
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
-        ]);
-
-        $kharlachi_order = WanaOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-
-        $name1 = $kharlachi_order->name1;
-        $date_af = $kharlachi_order->date;
-
-        $record = new Roznamchas();
-        $record->serial_num = $savedId;
-        $record->date_af = $date_af;
-        $record->amount_af = $request->input('amount_af');
-        $record->state = $request->input('state');
-        $record->khata_banam = $name1;
-        $record->country = $request->input('country');
-        $record->detail = $request->input('detail');
-        $record->save();
+        
 
 
         session()->flash('success', 'Record Created successfully');
@@ -176,25 +155,47 @@ class WanaController extends Controller
 
     // }
 
-    // public function wselfexpense(Request $request)
-    // {
-    //     // dd($request->all());    
-    //     $validatedData = $request->validate([
-    //         'musalsal_num' => 'required|string',
-    //         'comission' => 'required|string',
-    //         'name' => 'required|string',
-    //     ]);
+    public function wselfexpense(Request $request)
+    {
+        // dd($request->all());    
+        $validatedData = $request->validate([
+            'musalsal_num' => 'required|string',
+            'comission' => 'required|string',
+            'name' => 'required|string',
+        ]);
         
-    //     $record = new SelfDeliveryExpenseWana();
-    //     $record->musalsal_num = $request->input('musalsal_num');
-    //     $record->comission = $request->input('comission');
-    //     $record->name = $request->input('name');
-    //     $record->save();
+        $record = new SelfDeliveryExpenseWana();
+        $record->musalsal_num = $request->input('musalsal_num');
+        $record->comission = $request->input('comission');
+        $record->name = $request->input('name');
+        $record->save();
 
+
+        $validatedData = $request->validate([
+            'amount_af' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+            'detail' => 'required|string',
+        ]);
+
+        $kharlachi_order = WanaOrders::where('id','=',$request->input('musalsal_num'))->first();
+
+        $name1 = $kharlachi_order->name1;
+        $date_af = $kharlachi_order->date;
+
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
         
-    //     session()->flash('success', 'Record created successfully');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'Record created successfully');
+        return redirect()->back();
+    }
     public function wself(Request $request)
         {
             // dd($request->all());
@@ -368,7 +369,7 @@ class WanaController extends Controller
             'detail' => 'required|string',
         ]);
         
-        $wana_order = WanaOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
+        $wana_order = WanaOrders::where('id','=',$request->input('musalsal_num'))->first();
         
         $name1 = $wana_order->name1;
         $date_af = $wana_order->date;

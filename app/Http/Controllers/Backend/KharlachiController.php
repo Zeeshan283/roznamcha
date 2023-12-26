@@ -31,12 +31,12 @@ class KharlachiController extends Controller
         if (is_null($this->user) || !$this->user->can('orders.kharlachi.view')) {
             abort(403, 'Sorry !! You are Unauthorized to view order !');
         }
-        
+
         $orderData = [];
-        
+
 
         $kharlachiOrdersData = KharlachiOrders::with('self', 'expense')->with('admin')->get();
-        
+
         foreach($kharlachiOrdersData as $kharlachiData){
             $currentMusalsalNum = $kharlachiData['id'];
             $matchedSelf = collect($kharlachiData['self'])->firstWhere('musalsal_num', $currentMusalsalNum);
@@ -79,8 +79,14 @@ class KharlachiController extends Controller
                 ];
                 // dd($orderData);
         }
-        
-        return view('backend.pages.orders.kharlachi.index', compact('orderData'));
+
+
+        $KharlachiOrders = KharlachiOrders::with('self', 'expense')->with('admin')->get();
+
+
+
+
+        return view('backend.pages.orders.kharlachi.index', compact('KharlachiOrders'));
     }
 
     public function create()
@@ -112,14 +118,8 @@ class KharlachiController extends Controller
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
             'crm' => 'required|numeric',
-            'comission' => 'required|string',
-            'name' => 'required|string',
-            'amount_af' => 'required|string',
-            'state' => 'required|string',
-            'country' => 'required|string',
-            'detail' => 'required|string',
         ]);
-        
+
 
         $record = new KharlachiOrders();
         $record->musalsal_num = $request->input('musalsal_num');
@@ -137,30 +137,8 @@ class KharlachiController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
-        $record->save();
-
-        $savedId = $record->id;
-        
-        $record = new SelfDeliveryExpenseKharlachis();
-        $record->musalsal_num = $savedId;
-        $record->comission = $request->input('comission');
-        $record->name = $request->input('name');
-        $record->save();
-
-
-        $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-        $name1 = $kharlachi_order->name1;
-        $date_af = $kharlachi_order->date;
-
-        $record = new Roznamchas();
-        $record->serial_num = $savedId;
-        $record->date_af = $date_af;
-        $record->amount_af = $request->input('amount_af');
-        $record->state = $request->input('state');
-        $record->khata_banam = $name1;
-        $record->country = $request->input('country');
-        $record->detail = $request->input('detail');
         $record->save();
 
         session()->flash('success', 'Record updated successfully');
@@ -168,7 +146,7 @@ class KharlachiController extends Controller
     }
 
     // public function store(Request $request){
-        
+
     //     // dd($request->all());
     //     $validatedData = $request->validate([
     //         'musalsal_num' => 'required|string',
@@ -214,20 +192,34 @@ class KharlachiController extends Controller
 
     public function kselfexpense(Request $request)
     {
-        // dd($request->all());    
+        // dd($request->all());
         $validatedData = $request->validate([
             'musalsal_num' => 'required|string',
             'comission' => 'required|string',
             'name' => 'required|string',
         ]);
-        
+        // dd($request->all());
         $record = new SelfDeliveryExpenseKharlachis();
         $record->musalsal_num = $request->input('musalsal_num');
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
         $record->save();
 
-        
+
+        $kharlachi_order = KharlachiOrders::where('id',$request->input('musalsal_num'))->first();
+        // dd($kharlachi_order);
+        $name1 = $kharlachi_order->name1;
+        $date_af = $kharlachi_order->date;
+
+        $record = new Roznamchas();
+        $record->serial_num = $request->input('musalsal_num');
+        $record->date_af = $date_af;
+        $record->amount_af = $request->input('amount_af');
+        $record->state = $request->input('state');
+        $record->khata_banam = $name1;
+        $record->country = $request->input('country');
+        $record->detail = $request->input('detail');
+        $record->save();
         session()->flash('success', 'Record created successfully');
         return redirect()->back();
     }
@@ -239,14 +231,14 @@ class KharlachiController extends Controller
                 'exchange_rate' => 'required|string',
                 'us_malwala' => 'required|string',
             ]);
-            
+
             $record = new SelfDeliveryKharlachi();
             $record->musalsal_num = $request->input('musalsal_num');
             $record->exchange_rate = $request->input('exchange_rate');
             $record->us_malwala = $request->input('us_malwala');
             $record->save();
 
-            
+
             session()->flash('success', 'Record created successfully');
             return redirect()->back();
         }
@@ -287,7 +279,7 @@ class KharlachiController extends Controller
             'kariya' => 'required|numeric',
             'crm' => 'required|numeric',
         ]);
-        
+
         $record = KharlachiOrders::findOrFail($id);
         $record->musalsal_num = $request->input('musalsal_num');
         $record->name1 = $request->input('name1');
@@ -307,11 +299,11 @@ class KharlachiController extends Controller
         $record->crm = $request->input('crm');
         $record->date = $request->input('date');
         $record->update();
-    
+
         session()->flash('success', 'Record updated successfully');
         return redirect()->back();
     }
-    
+
     public function updatekselfexpense(Request $request, $id) {
         // dd($request->all());
         $validatedData = $request->validate([
@@ -319,13 +311,13 @@ class KharlachiController extends Controller
             'comission' => 'required|string',
             'name' => 'required|string',
         ]);
-    
+
         $record = SelfDeliveryExpenseKharlachis::findOrFail($id);
         $record->musalsal_num = $request->input('musalsal_num');
         $record->comission = $request->input('comission');
         $record->name = $request->input('name');
         $record->update();
-    
+
         session()->flash('success', 'Record updated successfully');
         return redirect()->back();
     }
@@ -336,30 +328,30 @@ class KharlachiController extends Controller
             'exchange_rate' => 'required|string',
             'us_malwala' => 'required|string',
         ]);
-    
+
         $record = SelfDeliveryKharlachi::findOrFail($id);
         $record->musalsal_num = $request->input('musalsal_num');
         $record->exchange_rate = $request->input('exchange_rate');
         $record->us_malwala = $request->input('us_malwala');
         $record->save();
-    
+
         session()->flash('success', 'Record updated successfully');
         return redirect()->back();
     }
-    
-    
+
+
 
     public function destroy($id)
     {
         $record = KharlachiOrders::find($id);
         if ($record) {
             $selfRecord = SelfDeliveryKharlachi::where('musalsal_num', $record->id)->first();
-    
+
             if ($selfRecord) {
                 $selfRecord->delete();
             }
             $selfRecordExpense = SelfDeliveryExpenseKharlachis::where('musalsal_num', $record->id)->first();
-    
+
             if ($selfRecordExpense) {
                 $selfRecordExpense->delete();
             }
@@ -371,18 +363,18 @@ class KharlachiController extends Controller
             return redirect()->back();
         }
     }
-    
+
 
     public function show($id)
     {
         // dd('hello');
-        $record = KharlachiOrders::find($id); 
+        $record = KharlachiOrders::find($id);
         if (!$record) {
             return redirect()->back()->with('error', 'no record found');
         }
-        return view('backend.pages.orders.kharlachi.order', ['record'=> $record]);    
+        return view('backend.pages.orders.kharlachi.order', ['record'=> $record]);
 
-    } 
+    }
 
     public function roznamchask(Request $request)
     {
@@ -394,9 +386,9 @@ class KharlachiController extends Controller
             'country' => 'required|string',
             'detail' => 'required|string',
         ]);
-        
-        $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
-        
+
+        $kharlachi_order = KharlachiOrders::where('id','=',$request->input('musalsal_num'))->first();
+
         $name1 = $kharlachi_order->name1;
         $date_af = $kharlachi_order->date;
 
@@ -413,9 +405,9 @@ class KharlachiController extends Controller
 
         session()->flash('success', 'Record Created successfully');
         return redirect()->back();
-    }   
+    }
 
-    public function updateroznamchask(Request $request, $id)
+    public function updateroznamchask(Request $request,$id)
     {
         $validatedData = $request->validate([
             'musalsal_num' => 'required|string',
@@ -426,7 +418,7 @@ class KharlachiController extends Controller
             'country' => 'required|string',
             'detail' => 'required|string',
         ]);
-    
+
         $record = Roznamchas::findOrFail($id);
         $record->serial_num = $request->input('musalsal_num');
         $record->date_af = $request->input('date_af');
@@ -436,7 +428,7 @@ class KharlachiController extends Controller
         $record->country = $request->input('country');
         $record->detail = $request->input('detail');
         $record->save();
-    
+
         session()->flash('success', 'Record updated successfully');
         return redirect()->back();
     }
@@ -444,7 +436,7 @@ class KharlachiController extends Controller
     public function invoice($id)
     {
         $inv = KharlachiOrders::with('self', 'expense')->with('admin')->findOrFail($id);
-  
+
         return view('backend.pages.invoice.index',compact('inv'));
     }
 

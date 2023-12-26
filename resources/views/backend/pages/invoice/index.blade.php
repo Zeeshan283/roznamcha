@@ -326,7 +326,7 @@
                         <div class="col-md-4">
                             <div class="underline">
                                 <hr><span class="text-on-line">{{$inv->port}}</span>
-                                <p class="label">طورخم کسټم</p>
+                                <p class="label">بندر </p>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -364,8 +364,8 @@
                         <table class="table table-bordered table-fixed">
                             <thead>
                                 <tr>
-                                    <th style="width: 16.66%;">کرایه مجموعی</th>
-                                    <th style="width: 16.66%;">كرايه في تن</th>
+                                    <th style="width: 16.66%;">CRM </th>
+                                    <th style="width: 16.66%;">كرايه </th>
                                     <th style="width: 16.66%;">و وزن خالص و بارنامہ</th>
                                     <th style="width: 16.66%;">نمبر پلیت موتر ازبکستان</th>
                                     <th style="width: 14%;">تفصیلات</th>
@@ -375,7 +375,7 @@
                             <tbody>
                                 <!-- Add your table rows here -->
                                 <tr class="row_height">
-                                    <td class="table-data" style="font-size: 20px" rowspan="3">{{$inv->kariya * $inv->weight}}</td>
+                                    <td class="table-data" style="font-size: 20px" rowspan="3">{{$inv->crm}}</td>
                                     <td class="table-data" style="font-size: 20px" rowspan="3" >{{$inv->kariya}}</td>
                                     <td class="table-data" style="font-size: 20px" rowspan="3" >{{$inv->weight}}</td>
                                     <td class="table-data" style="font-size: 20px" rowspan="3" >{{$inv->n_plate_usd}}</td>

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('amount_usa')->nullable();
             $table->string('bilty')->nullable();
             $table->string('afghani')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
