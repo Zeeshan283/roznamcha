@@ -10,7 +10,7 @@ class KharlachiOrders extends Model
     use HasFactory;
 
     protected $fillable = ['date', 'musalsal_num', 'date', 'name1', 'name2', 'vehicle_num', 'port',
-    'p_of_d','n_plate_usd','product', 'quantity', 'weight', ];
+    'p_of_d','n_plate_usd','product', 'quantity', 'weight', 'images' ];
     public function admin()
     {
         return $this->belongsTo(Admin::class,'name1');

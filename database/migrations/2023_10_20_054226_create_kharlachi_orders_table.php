@@ -34,6 +34,7 @@ return new class extends Migration
             $table->text('weight');
             $table->text('kariya');
             $table->text('crm');
+            $table->string('images');
             $table->timestamps();
         });
     }

@@ -69,6 +69,8 @@ class ThorkhamController extends Controller
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
+            'crm' => 'required|numeric',
+            'img.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $record = new ThorkhamOrders();
@@ -87,7 +89,32 @@ class ThorkhamController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+              if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $fileName = uniqid() . '.' . $extension;
+                $path = $image->move('upload/thorkham/', $fileName);
+      
+                $images[] = $path->getPathname();
+              }
+            }
+      
+            // Merge the new images with the existing ones
+            $existingImages = json_decode($record->images, true);
+      
+            if (is_array($existingImages)) {
+              $images = array_merge($existingImages, $images);
+            } else {
+              // Handle the case where JSON decoding failed or $existingImages is not an array
+            }
+            $record->images = json_encode($images);
+            $record->save();
+          }
+
         $record->save();      
         
        
@@ -234,6 +261,8 @@ class ThorkhamController extends Controller
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
+            'crm' => 'required|numeric',
+
         ]);
         
         $record = ThorkhamOrders::findOrFail($id);
@@ -252,6 +281,7 @@ class ThorkhamController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
         $record->update();
     
@@ -383,5 +413,13 @@ class ThorkhamController extends Controller
         $inv = ThorkhamOrders::with('self', 'expense')->with('admin')->findOrFail($id);
 
         return view('backend.pages.invoice.index',compact('inv'));
+    }
+
+    public function images(Request $request,$id)
+    {
+        $info = ThorkhamOrders::where('id', $id)->select('id', 'musalsal_num', 'name_driver', 'vehicle_num')->first();
+        $details = ThorkhamOrders::where('id', $id)->first('images');
+        $images = json_decode($details->images, true);
+        return view('backend.pages.invoice.images', compact('info','images'));
     }
 }

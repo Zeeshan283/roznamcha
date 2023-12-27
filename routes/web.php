@@ -40,13 +40,14 @@ Route::group(['prefix' => 'admin'], function () {
  
     Route::resource('orders/kharlachi', 'Backend\KharlachiController', ['names' => 'admin.orders.kharlachi']);    
     Route::get('order/kharlachi/invoice/{id}','Backend\KharlachiController@invoice')->name('kharlachi.invoice');
+    Route::get('order/kharlachi/images/{id}','Backend\KharlachiController@images')->name('kharlachi.images');
     Route::post('order/kharlachi/selfexpense','Backend\KharlachiController@kselfexpense')->name('admin.order.kselfexpense');
     Route::put('order/kharlachi/selfexpense/{id}','Backend\KharlachiController@updatekselfexpense')->name('admin.order.updatekselfexpense');
     Route::put('order/kharlachi/self/{id}','Backend\KharlachiController@updatekself')->name('admin.order.updatekself');
     Route::post('order/kharlachi/self','Backend\KharlachiController@kself')->name('admin.order.kself');
     // Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@roznamchask')->name('admin.order.roznamchask');
     Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@roznamchask')->name('admin.order.roznamchask');
-    Route::post('order/kharlachi/roznamcha','Backend\KharlachiController@updateroznamchask')->name('admin.order.updateroznamchask');
+    Route::post('order/kharlachi/roznamcha/{id}','Backend\KharlachiController@updateroznamchask')->name('admin.order.updateroznamchask');
     Route::get('orders/kharlachi/{id}/destroy','Backend\KharlachiController@destroy')->name('admin.orders.kharlachi.destroy1');
 
 
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('orders/ghulamkhan', 'Backend\GhulamkhanController', ['names' => 'admin.orders.ghulamkhan']);
     Route::get('order/ghulamkhan/invoice/{id}','Backend\GhulamkhanController@invoice')->name('ghulamkhan.invoice');
+    Route::get('order/ghulamkhan/images/{id}','Backend\GhulamkhanController@images')->name('ghulamkhan.images');
     Route::post('order/ghulamkhan/selfexpense','Backend\GhulamkhanController@gselfexpense')->name('admin.order.gselfexpense');
     Route::put('order/ghulamkhan/selfexpense/{id}','Backend\GhulamkhanController@updatekselfexpense')->name('admin.order.updategselfexpense');
     Route::put('order/ghulamkhan/self/{id}','Backend\GhulamkhanController@updatekself')->name('admin.order.updategself');
@@ -63,10 +65,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('orders/ghulamkhan/{id}/destroy','Backend\GhulamkhanController@destroy')->name('admin.orders.ghulamkhan.destroy1');
 
-
-
+    
     Route::resource('orders/thorkham', 'Backend\ThorkhamController', ['names' => 'admin.orders.thorkham']);
     Route::get('order/thorkham/invoice/{id}','Backend\ThorkhamController@invoice')->name('thorkham.invoice');
+    Route::get('order/thorkham/images/{id}','Backend\ThorkhamController@images')->name('thorkham.images');
     Route::post('order/thorkham/selfexpense','Backend\ThorkhamController@tselfexpense')->name('admin.order.tselfexpense');
     Route::put('order/thorkham/selfexpense/{id}','Backend\ThorkhamController@updatekselfexpense')->name('admin.order.updatetselfexpense');
     Route::put('order/thorkham/self/{id}','Backend\ThorkhamController@updatekself')->name('admin.order.updatetself');
@@ -78,6 +80,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('orders/wana', 'Backend\WanaController', ['names' => 'admin.orders.wana']);
     Route::get('order/wana/invoice/{id}','Backend\WanaController@invoice')->name('wana.invoice');
+    Route::get('order/wana/images/{id}','Backend\WanaController@images')->name('wana.images');
     Route::post('order/wana/selfexpense','Backend\WanaController@wselfexpense')->name('admin.order.wselfexpense');
     Route::put('order/wana/selfexpense/{id}','Backend\WanaController@updatekselfexpense')->name('admin.order.updatewselfexpense');
     Route::put('order/wana/self/{id}','Backend\WanaController@updatekself')->name('admin.order.updatewself');
@@ -86,6 +89,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('order/wana/roznamcha/{id}','Backend\WanaController@updateroznamchast')->name('admin.order.updateroznamchasw');
     Route::get('orders/wana/{id}/destroy','Backend\WanaController@destroy')->name('admin.orders.wana.destroy1');
 
+    // Show Orders 
+    Route::get('order/show','Backend\PersonalController@showOrders')->name('admin.khata.personal.showOrders');
 
 
     Route::resource('roles', 'Backend\RolesController', ['names' => 'admin.roles']);

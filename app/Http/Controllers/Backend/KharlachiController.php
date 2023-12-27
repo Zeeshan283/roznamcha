@@ -101,6 +101,8 @@ class KharlachiController extends Controller
     }
 
     public function store(Request $request){
+
+        // dd($request->all());
         $validatedData = $request->validate([
             'musalsal_num' => 'required|string',
             'name1' => 'required|string',
@@ -118,6 +120,7 @@ class KharlachiController extends Controller
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
             'crm' => 'required|numeric',
+            'img.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
@@ -139,6 +142,31 @@ class KharlachiController extends Controller
         $record->kariya = $request->input('kariya');
         $record->crm = $request->input('crm');
         $record->date = $request->input('date');
+
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+              if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $fileName = uniqid() . '.' . $extension;
+                $path = $image->move('upload/kharlachiorders/', $fileName);
+      
+                $images[] = $path->getPathname();
+              }
+            }
+      
+            // Merge the new images with the existing ones
+            $existingImages = json_decode($record->images, true);
+      
+            if (is_array($existingImages)) {
+              $images = array_merge($existingImages, $images);
+            } else {
+              // Handle the case where JSON decoding failed or $existingImages is not an array
+            }
+            $record->images = json_encode($images);
+            $record->save();
+          }
+
         $record->save();
 
         session()->flash('success', 'Record updated successfully');
@@ -220,6 +248,9 @@ class KharlachiController extends Controller
         $record->country = $request->input('country');
         $record->detail = $request->input('detail');
         $record->save();
+
+
+        
         session()->flash('success', 'Record created successfully');
         return redirect()->back();
     }
@@ -387,7 +418,7 @@ class KharlachiController extends Controller
             'detail' => 'required|string',
         ]);
 
-        $kharlachi_order = KharlachiOrders::where('id','=',$request->input('musalsal_num'))->first();
+        $kharlachi_order = KharlachiOrders::where('musalsal_num','=',$request->input('musalsal_num'))->first();
 
         $name1 = $kharlachi_order->name1;
         $date_af = $kharlachi_order->date;
@@ -440,6 +471,12 @@ class KharlachiController extends Controller
         return view('backend.pages.invoice.index',compact('inv'));
     }
 
-
+    public function images(Request $request,$id)
+    {
+        $info = KharlachiOrders::where('id', $id)->select('id', 'musalsal_num', 'name_driver', 'vehicle_num')->first();
+        $details = KharlachiOrders::where('id', $id)->first('images');
+        $images = json_decode($details->images, true);
+        return view('backend.pages.invoice.images', compact('info','images'));
+    }
 
 }

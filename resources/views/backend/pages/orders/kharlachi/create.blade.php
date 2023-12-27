@@ -148,6 +148,10 @@
                                         <input class="form-control" autocomplete="off" name="crm" type="text"
                                             id="city">
                                     </div>
+                                    <div class="col-sm-4 mb-4">
+                                        <label for="serial_no">Images:</label>
+                                        <input type="file" name="images[]" multiple accept="image/*">
+                                    </div>
 
                                 </div>
                             </div>
@@ -253,12 +257,6 @@
                                             <input class="form-control" autocomplete="off" name="amount_af"
                                                 type="amount_af" id="serial_no">
                                         </div>
-                                        <div class="col-sm-12 mb-2">
-                                            <label for="serial_no">Images:</label>
-                                            <input class="form-control" autocomplete="off" name="img" type="file"
-                                                multiple id="serial_no">
-                                        </div>
-
                                     </div>
 
                                     <div class="col-sm-6">

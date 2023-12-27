@@ -116,7 +116,9 @@
                                                     </button>
                                                     <div class="dropdown-content" id="dropdownContent">
                                                         <a href="{{ route('thorkham.invoice', $data['id']) }}"
-                                                            class="fa fa-eye text-dark">View</a>
+                                                            class="fa fa-eye text-dark">Invoice</a>
+                                                        <a href="{{ route('thorkham.images', $data['id']) }}"
+                                                            class="fa fa-info-circle text-dark">Detail</a>
                                                         <a href="{{ route('admin.orders.thorkham.edit', $data->id) }}"
                                                             class="fa fa-edit text-dark">Edit</a>
                                                         <a href="{{ route('admin.orders.thorkham.destroy1', $data->id) }}"

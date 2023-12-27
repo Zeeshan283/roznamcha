@@ -68,6 +68,8 @@ class WanaController extends Controller
             'product' => 'required|string',
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
+            'crm' => 'required|numeric',
+            'img.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $record = new WanaOrders();
@@ -86,11 +88,34 @@ class WanaController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+              if ($image->isValid()) {
+                $extension = $image->getClientOriginalExtension();
+                $fileName = uniqid() . '.' . $extension;
+                $path = $image->move('upload/wana/', $fileName);
+                $images[] = $path->getPathname();
+              }
+            }
+      
+            $existingImages = json_decode($record->images, true);
+      
+            if (is_array($existingImages)) {
+              $images = array_merge($existingImages, $images);
+            } else {
+              // Handle the case where JSON decoding failed or $existingImages is not an array
+            }
+            $record->images = json_encode($images);
+            $record->save();
+          }
+
+
         $record->save();
 
         $savedId = $record->id;
-
 
         $validatedData = $request->validate([
             'comission' => 'required|string',
@@ -248,6 +273,8 @@ class WanaController extends Controller
             'quantity' => 'required|numeric',
             'weight' => 'required|numeric',
             'kariya' => 'required|numeric',
+            'crm' => 'required|numeric',
+
         ]);
         
         $record = WanaOrders::findOrFail($id);
@@ -266,6 +293,7 @@ class WanaController extends Controller
         $record->quantity = $request->input('quantity');
         $record->weight = $request->input('weight');
         $record->kariya = $request->input('kariya');
+        $record->crm = $request->input('crm');
         $record->date = $request->input('date');
         $record->update();
     
@@ -393,5 +421,13 @@ class WanaController extends Controller
         $inv = WanaOrders::with('self', 'expense')->with('admin')->findOrFail($id);
 
         return view('backend.pages.invoice.index',compact('inv'));
+    }
+
+    public function images(Request $request,$id)
+    {
+        $info = WanaOrders::where('id', $id)->select('id', 'musalsal_num', 'name_driver', 'vehicle_num')->first();
+        $details = WanaOrders::where('id', $id)->first('images');
+        $images = json_decode($details->images, true);
+        return view('backend.pages.invoice.images', compact('info','images'));
     }
 }
