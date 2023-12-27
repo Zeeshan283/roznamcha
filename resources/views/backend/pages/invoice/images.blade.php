@@ -97,7 +97,7 @@
                     
                             <div class="row">
                                 {{-- Display Images in a Grid --}}
-                                @foreach($images as $image)
+                                @foreach($images ?? [] as $image)
                                     <div class="col-md-3 mb-3">
                                         <img src="{{ asset($image) }}" class="img-fluid" alt="Image">
                                     </div>
